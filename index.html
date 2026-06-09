@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brums Art Drums — International Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0d;--sf:#161616;--card:#1b1b1b;--card2:#212121;--br:#282828;--br2:#353535;--ac:#c8a84b;--ac2:#e6c875;--acd:#c8a84b1a;--tx:#f0ede8;--tx2:#bbb;--mu:#777;--gr:#4caf7a;--fh:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--r:10px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--fb);font-size:15px;line-height:1.6}
+a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:var(--fb)}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:blur(18px);border-bottom:1px solid var(--br)}
+.hdr{max-width:1340px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:14px}
+.logo{font-family:var(--fh);font-size:21px;letter-spacing:2px;color:var(--ac);white-space:nowrap;flex-shrink:0}
+.logo em{color:var(--tx);font-style:normal}
+.hnav{display:flex;gap:2px;margin-left:16px}
+.hnav a{font-size:13px;color:var(--mu);padding:5px 11px;border-radius:18px;transition:.15s;font-weight:500;white-space:nowrap}
+.hnav a:hover{color:var(--tx)}.hnav a.on{color:var(--ac)}
+.hright{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+/* Country selector */
+.cwrap{position:relative}
+.cbtn{display:flex;align-items:center;gap:7px;background:var(--sf);border:1px solid var(--br2);color:var(--tx);padding:6px 12px;border-radius:8px;font-size:13px;font-weight:500;min-width:190px;transition:.15s}
+.cbtn:hover{border-color:var(--ac)}.cbtn.open{border-color:var(--ac)}
+.cflag{font-size:15px}.carr{margin-left:auto;color:var(--mu);font-size:10px;transition:.2s}.cbtn.open .carr{transform:rotate(180deg)}
+.czp{background:var(--acd);color:var(--ac);font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;letter-spacing:1px}
+.cdrop{position:absolute;top:calc(100% + 5px);right:0;width:290px;background:var(--sf);border:1px solid var(--br2);border-radius:12px;padding:8px;z-index:999;box-shadow:0 20px 60px rgba(0,0,0,.75);display:none}
+.cdrop.open{display:block}
+.csearch{width:100%;background:var(--card2);border:1px solid var(--br2);color:var(--tx);padding:8px 12px;border-radius:7px;font-size:13px;outline:none;margin-bottom:6px}
+.csearch::placeholder{color:var(--mu)}
+.clist{max-height:250px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--br) transparent}
+.citem{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:6px;font-size:13px;transition:.1s}
+.citem:hover{background:var(--card2)}.citem.sel{background:var(--acd);color:var(--ac)}
+.cizone{margin-left:auto;font-size:10px;font-weight:700;color:var(--mu)}.citem.sel .cizone{color:var(--ac)}
+.cnr{padding:10px;color:var(--mu);font-size:13px;text-align:center}
+
+/* Lang toggle */
+.ltog{display:flex;border:1px solid var(--br);border-radius:18px;overflow:hidden}
+.ltog button{background:none;border:none;color:var(--mu);padding:5px 11px;font-size:13px;font-weight:600;transition:.15s}
+.ltog button.on{background:var(--ac);color:#000}
+
+/* PAGE SECTIONS */
+.psec{display:none}.psec.on{display:block}
+
+/* SECONDARY NAV (catalog only) */
+.snav{background:var(--sf);border-bottom:1px solid var(--br);position:sticky;top:60px;z-index:200;overflow-x:auto;scrollbar-width:none;display:none}
+.snav::-webkit-scrollbar{display:none}
+.snav-i{max-width:1340px;margin:0 auto;padding:0 24px;display:flex}
+.spill{background:none;border:none;color:var(--mu);padding:12px 14px;font-size:13px;font-weight:500;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap}
+.spill:hover{color:var(--tx)}.spill.on{color:var(--ac);border-bottom-color:var(--ac)}
+
+/* HERO */
+.hero{padding:60px 24px 48px;background:radial-gradient(ellipse 100% 70% at 50% 100%,#c8a84b0f 0%,transparent 65%);text-align:center}
+.htag{display:inline-flex;align-items:center;gap:8px;background:var(--acd);border:1px solid var(--ac);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;color:var(--ac);letter-spacing:1.5px;margin-bottom:18px;text-transform:uppercase}
+.hdot{width:6px;height:6px;background:var(--gr);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-family:var(--fh);font-size:clamp(54px,8vw,96px);letter-spacing:4px;line-height:1;margin-bottom:12px}
+.hero h1 span{color:var(--ac)}
+.hsub{color:var(--tx2);font-size:16px;max-width:460px;margin:0 auto 28px;font-weight:300}
+.hzone{display:inline-flex;align-items:center;gap:9px;background:var(--sf);border:1px solid var(--ac);border-radius:28px;padding:9px 20px;font-size:14px;font-weight:500}
+.hzone strong{color:var(--ac)}
+.hnote{margin-top:18px;font-size:12px;color:var(--mu);max-width:540px;margin-left:auto;margin-right:auto}
+
+/* NOTICE BAR */
+.nbar{background:#c8a84b0b;border-top:1px solid var(--br);border-bottom:1px solid var(--br);padding:9px 24px;text-align:center;font-size:12.5px;color:var(--tx2)}
+.nbar strong{color:var(--ac)}
+
+/* FEATURE TILES */
+.ftiles{max-width:1340px;margin:0 auto;padding:36px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.ftile{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:22px}
+.ftile-icon{font-size:26px;margin-bottom:10px}
+.ftile-h{font-family:var(--fh);font-size:17px;letter-spacing:1px;margin-bottom:6px}
+.ftile-b{font-size:13px;color:var(--tx2);line-height:1.5}
+
+/* CTA */
+.cta-wrap{text-align:center;padding:4px 24px 48px}
+.cta{background:var(--ac);color:#000;border:none;padding:13px 34px;border-radius:8px;font-size:15px;font-weight:700;letter-spacing:.5px;transition:.15s}
+.cta:hover{background:var(--ac2)}
+
+/* CATALOG LAYOUT */
+.cat-layout{max-width:1340px;margin:0 auto;padding:36px 24px 56px;display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start}
+@media(max-width:820px){.cat-layout{grid-template-columns:1fr;padding:20px 16px 40px}}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:108px}
+.sb-title{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase;padding:0 4px;margin-bottom:10px}
+.sb-sec{margin-bottom:3px}
+.sb-par{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;font-size:13.5px;font-weight:600;color:var(--tx2);transition:.15s;border:1px solid transparent}
+.sb-par:hover{background:var(--sf);color:var(--tx)}.sb-par.on{background:var(--sf);color:var(--ac);border-color:var(--br)}
+.sb-ch{margin-left:auto;font-size:9px;color:var(--mu);transition:.2s}.sb-par.exp .sb-ch{transform:rotate(180deg);color:var(--ac)}
+.sb-subs{padding:3px 0 3px 22px;display:none}.sb-subs.on{display:block}
+.sb-sub{display:block;padding:5px 10px;border-radius:6px;font-size:12.5px;color:var(--mu);transition:.12s}
+.sb-sub:hover{color:var(--tx);background:var(--sf)}.sb-sub.on{color:var(--ac);background:var(--acd)}
+
+/* PRODUCTS AREA */
+.cat-sub{margin-bottom:40px;scroll-margin-top:120px}
+.sub-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--br)}
+.sub-hdr h3{font-family:var(--fh);font-size:24px;letter-spacing:1.5px}
+.sub-cnt{font-size:10px;color:var(--mu);background:var(--br);padding:2px 9px;border-radius:10px;font-weight:700}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
+
+/* PRODUCT CARD */
+.pcard{background:var(--card);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;transition:.2s}
+.pcard:hover{transform:translateY(-3px);border-color:var(--br2);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.pimg{aspect-ratio:4/3;background:#181818;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:.3s}.pcard:hover .pimg img{transform:scale(1.05)}
+.pph{display:flex;flex-direction:column;align-items:center;gap:7px;opacity:.3}
+.pph svg{width:40px;height:40px;stroke:var(--ac)}.pph span{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
+.pbody{padding:13px}
+.psku{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--ac);margin-bottom:2px;text-transform:uppercase}
+.pmto{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gr);background:#4caf7a12;border:1px solid #4caf7a2a;border-radius:9px;padding:1px 7px;margin-bottom:5px;text-transform:uppercase}
+.pname{font-size:13px;color:var(--tx);line-height:1.4;margin-bottom:11px;min-height:36px}
+.pprice{border-top:1px solid var(--br);padding-top:9px;display:flex;align-items:baseline;justify-content:space-between}
+.plabel{font-size:10px;color:var(--mu);letter-spacing:.5px}
+.pval{font-family:var(--fh);font-size:23px;color:var(--ac);letter-spacing:.5px}
+.pcur{font-size:12px;color:var(--mu);font-weight:700;margin-right:3px}
+.pnp{font-size:11px;color:var(--mu);font-style:italic}
+
+/* INFO / ABOUT */
+.ipage{max-width:880px;margin:0 auto;padding:52px 24px}
+.ih{font-family:var(--fh);font-size:46px;letter-spacing:3px;margin-bottom:8px}
+.ih span{color:var(--ac)}
+.ilead{font-size:17px;color:var(--tx2);font-weight:300;line-height:1.7;margin-bottom:32px;max-width:660px}
+.ibody{font-size:15px;color:var(--tx2);line-height:1.8;margin-bottom:18px}
+.ibody strong{color:var(--tx)}
+.isep{height:1px;background:var(--br);margin:32px 0}
+
+/* Social */
+.socrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.socbtn{display:flex;align-items:center;gap:7px;background:var(--sf);border:1px solid var(--br2);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:500;color:var(--tx2);transition:.15s}
+.socbtn:hover{border-color:var(--ac);color:var(--ac)}
+
+/* Timeline */
+.tl{margin:32px 0}
+.tl-item{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--br)}
+.tl-item:last-child{border-bottom:none}
+.tl-yr{font-family:var(--fh);font-size:26px;color:var(--ac);letter-spacing:1px;padding-top:2px}
+.tl-h{font-size:14px;font-weight:600;margin-bottom:3px}.tl-p{font-size:13px;color:var(--tx2);line-height:1.55}
+
+/* Friends */
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:22px}
+.fc{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:18px;transition:.15s}
+.fc:hover{border-color:var(--br2)}.fc-n{font-weight:600;font-size:14px;margin-bottom:5px}.fc-d{font-size:13px;color:var(--tx2)}
+
+/* Contact */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:24px}
+.ccard{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:18px;display:flex;align-items:center;gap:12px;transition:.15s}
+.ccard:hover{border-color:var(--ac)}.cicon{width:38px;height:38px;border-radius:8px;background:var(--acd);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.clbl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}.cval{font-size:13.5px;font-weight:500}
+
+/* Coverage */
+.covsec{background:var(--sf);border-top:1px solid var(--br);padding:52px 24px}
+.covi{max-width:1340px;margin:0 auto}
+.covh{text-align:center;margin-bottom:36px}
+.covh h2{font-family:var(--fh);font-size:42px;letter-spacing:3px;margin-bottom:6px}
+.covh p{color:var(--mu);font-size:14px}
+.zgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.zcard{background:var(--card);border:1px solid var(--br);border-radius:var(--r);padding:18px;transition:.2s}
+.zcard.az{border-color:var(--ac);box-shadow:0 0 0 1px #c8a84b22}
+.zcardh{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.zbadge{width:36px;height:36px;border-radius:8px;background:var(--br);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:19px;color:var(--ac)}
+.zcardh h3{font-family:var(--fh);font-size:19px;letter-spacing:1px}
+.zcur{margin-left:auto;font-size:9px;font-weight:700;background:var(--acd);color:var(--ac);padding:2px 8px;border-radius:10px;letter-spacing:1px}
+.ctags{display:flex;flex-wrap:wrap;gap:4px}
+.ctag{font-size:11px;color:var(--mu);background:var(--bg);border:1px solid var(--br);padding:2px 8px;border-radius:12px}
+.zcard.az .ctag{border-color:#c8a84b2a;color:var(--tx2)}
+
+/* Footer */
+footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-align:center}
+.fi{max-width:1340px;margin:0 auto}
+.flogo{font-family:var(--fh);font-size:28px;letter-spacing:3px;color:var(--ac);margin-bottom:4px}
+.fsub{color:var(--mu);font-size:12px;margin-bottom:18px}
+.flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+.flinks a{font-size:12px;color:var(--mu);transition:.12s}.flinks a:hover{color:var(--ac)}
+.flegal{font-size:11.5px;color:#555;max-width:620px;margin:0 auto;line-height:1.7}
+.flegal strong{color:var(--mu)}
+
+/* Scroll top */
+#sct{position:fixed;bottom:22px;right:22px;width:40px;height:40px;border-radius:50%;background:var(--ac);color:#000;border:none;font-size:17px;align-items:center;justify-content:center;display:none;z-index:400}
+#sct:hover{background:var(--ac2)}
+
+@media(max-width:640px){
+  .hnav{display:none}.hdr{gap:6px}.hright{gap:6px}
+  .cbtn{min-width:130px;font-size:12px;padding:5px 9px}
+  .hero h1{font-size:50px}.ipage{padding:36px 16px}.ih{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="hdr">
+  <a class="logo" href="#" onclick="goSec('home');return false">BRUMS <em>ART</em> DRUMS</a>
+  <nav class="hnav">
+    <a href="#" class="on" id="nv-home" onclick="goSec('home');return false">Inicio</a>
+    <a href="#" id="nv-catalog" onclick="goSec('catalog');return false">Catálogo</a>
+    <a href="#" id="nv-about" onclick="goSec('about');return false">Quiénes Somos</a>
+    <a href="#" id="nv-track" onclick="goSec('track');return false">Trayectoria</a>
+    <a href="#" id="nv-friends" onclick="goSec('friends');return false">Amigos</a>
+    <a href="#" id="nv-contact" onclick="goSec('contact');return false">Contacto</a>
+  </nav>
+  <div class="hright">
+    <div class="cwrap" id="cwrap">
+      <button class="cbtn" id="cbtn" onclick="toggleDrop()">
+        <span class="cflag" id="sflag">🌍</span>
+        <span id="scname">Select country...</span>
+        <span class="czp" id="szp" style="display:none"></span>
+        <span class="carr">▼</span>
+      </button>
+      <div class="cdrop" id="cdrop">
+        <input class="csearch" id="csearch" type="text" placeholder="Search country..." oninput="filterC(this.value)">
+        <div class="clist" id="clist"></div>
+      </div>
+    </div>
+    <div class="ltog">
+      <button class="on" id="bes" onclick="setLang('es')">ES</button>
+      <button id="ben" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="snav" id="snav"><div class="snav-i" id="snavi"></div></div>
+
+<!-- HOME -->
+<div class="psec on" id="sec-home">
+  <div class="hero">
+    <div class="htag"><div class="hdot"></div><span id="ht"></span></div>
+    <h1>BRUMS <span>ART</span> DRUMS</h1>
+    <p class="hsub" id="hsub"></p>
+    <div class="hzone" id="hzone" style="display:inline-flex"></div>
+    <p class="hnote" id="hnote"></p>
+  </div>
+  <div class="nbar" id="nbar"></div>
+  <div class="ftiles" id="ftiles"></div>
+  <div class="cta-wrap"><button class="cta" id="cta" onclick="goSec('catalog')"></button></div>
+</div>
+
+<!-- CATALOG -->
+<div class="psec" id="sec-catalog">
+  <div class="cat-layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main id="parea"></main>
+  </div>
+  <div class="covsec">
+    <div class="covi">
+      <div class="covh"><h2 id="covh"></h2><p id="covp"></p></div>
+      <div class="zgrid" id="zgrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="psec" id="sec-about">
+  <div class="ipage">
+    <div class="ih" id="ab-h"></div>
+    <p class="ilead" id="ab-lead"></p>
+    <p class="ibody" id="ab-p1"></p>
+    <p class="ibody" style="margin-top:14px" id="ab-p2"></p>
+    <p class="ibody" style="margin-top:14px" id="ab-p3"></p>
+    <div class="isep"></div>
+    <div class="socrow">
+      <a class="socbtn" href="https://wa.me/5492342408256" target="_blank">📱 WhatsApp</a>
+      <a class="socbtn" href="https://instagram.com/brums_art_drums" target="_blank">📷 Instagram</a>
+      <a class="socbtn" href="https://www.facebook.com/brumsartdrums" target="_blank">👥 Facebook</a>
+      <a class="socbtn" href="https://youtube.com/@brumsartdrums" target="_blank">▶️ YouTube</a>
+      <a class="socbtn" href="https://ar.pinterest.com/brumsartdrums/" target="_blank">📌 Pinterest</a>
+    </div>
+  </div>
+</div>
+
+<!-- TRAYECTORIA -->
+<div class="psec" id="sec-track">
+  <div class="ipage">
+    <div class="ih" id="tr-h"></div>
+    <p class="ilead" id="tr-lead"></p>
+    <div class="tl" id="tl-body"></div>
+    <div class="isep"></div>
+    <p class="ibody" id="tr-intl"></p>
+  </div>
+</div>
+
+<!-- AMIGOS -->
+<div class="psec" id="sec-friends">
+  <div class="ipage">
+    <div class="ih">AMIGOS <span style="color:var(--ac)">BRUMS</span></div>
+    <p class="ilead" id="fr-lead"></p>
+    <div style="background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:18px;margin-top:4px">
+      <p style="font-size:13px;color:var(--tx2);margin-bottom:12px" id="fr-spot"></p>
+      <iframe style="border-radius:10px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="fg" id="fg"></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="psec" id="sec-contact">
+  <div class="ipage">
+    <div class="ih" id="ct-h"></div>
+    <p class="ilead" id="ct-lead"></p>
+    <div class="cgrid">
+      <a class="ccard" href="https://wa.me/5492342408256" target="_blank">
+        <div class="cicon">📱</div><div><div class="clbl">WhatsApp</div><div class="cval">+54 9 2342 408256</div></div>
+      </a>
+      <a class="ccard" href="mailto:brumsartdrums@gmail.com">
+        <div class="cicon">✉️</div><div><div class="clbl">Email</div><div class="cval">brumsartdrums@gmail.com</div></div>
+      </a>
+      <a class="ccard" href="https://instagram.com/brums_art_drums" target="_blank">
+        <div class="cicon">📷</div><div><div class="clbl">Instagram</div><div class="cval">@brums_art_drums</div></div>
+      </a>
+      <div class="ccard">
+        <div class="cicon">📍</div><div><div class="clbl" id="ct-loc"></div><div class="cval">Bragado, Buenos Aires, Argentina</div></div>
+      </div>
+    </div>
+    <div class="isep"></div>
+    <p class="ibody" id="ct-note" style="font-size:13px;color:var(--mu)"></p>
+  </div>
+</div>
+
+<button id="sct" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer>
+  <div class="fi">
+    <div class="flogo">BRUMS ART DRUMS</div>
+    <div class="fsub">Bragado, Buenos Aires, Argentina</div>
+    <div class="flinks">
+      <a href="#" onclick="goSec('home');return false" id="fl-home">Inicio</a>
+      <a href="#" onclick="goSec('catalog');return false" id="fl-cat">Catálogo</a>
+      <a href="#" onclick="goSec('about');return false" id="fl-ab">Quiénes Somos</a>
+      <a href="#" onclick="goSec('track');return false" id="fl-tr">Trayectoria</a>
+      <a href="#" onclick="goSec('friends');return false" id="fl-fr">Amigos Brums</a>
+      <a href="#" onclick="goSec('contact');return false" id="fl-ct">Contacto</a>
+      <a href="https://brumsartdrums.mitiendanube.com" target="_blank">Tienda Argentina 🇦🇷</a>
+    </div>
+    <p class="flegal" id="flegal"></p>
+  </div>
+</footer>
+
+<script>
+// ──────────── DATA ────────────
+const STRUCTURE=[{"id": "kits", "es": "Kit de Batería", "en": "Drum Kits", "subs": [{"id": "kit_flat_s", "es": "Kit Flat", "en": "Kit Flat", "groups": [1, 2, 3, 4, 5, 6, 7, 8], "products": [{"sku": null, "desc_es": "Kit Flat 22-14-10-12-14", "desc_en": "Kit Flat 22-14-10-12-14", "bl": 1, "group": 1, "img": "KIT-22-14.webp", "zone_a": 1378, "zone_b_eur": 1285, "zone_c": 1427, "zone_d": 1470}, {"sku": null, "desc_es": "Kit Flat 20-13-10-13", "desc_en": "Kit Flat 20-13-10-13", "bl": 1, "group": 1, "img": "KIT-20-13.webp", "zone_a": 1129, "zone_b_eur": 1046, "zone_c": 1162, "zone_d": 1197}, {"sku": null, "desc_es": "Kit Flat 20-12-10-13", "desc_en": "Kit Flat 20-12-10-13", "bl": 2, "group": 2, "img": "KIT-20-12.png", "zone_a": 1217, "zone_b_eur": 1125, "zone_c": 1250, "zone_d": 1285}, {"sku": null, "desc_es": "Kit Flat 22-13-10-12-14 S", "desc_en": "Kit Flat 22-13-10-12-14 S", "bl": 3, "group": 3, "img": "KIT-22-13S.jpeg", "zone_a": 1525, "zone_b_eur": 1417, "zone_c": 1574, "zone_d": 1616}, {"sku": null, "desc_es": "Kit Flat 18-12-10-13", "desc_en": "Kit Flat 18-12-10-13", "bl": 4, "group": 4, "img": "KIT-18-12.png", "zone_a": 1103, "zone_b_eur": 1018, "zone_c": 1131, "zone_d": 1157}, {"sku": null, "desc_es": "Kit Flat 18-10", "desc_en": "Kit Flat 18-10", "bl": 5, "group": 5, "img": "KIT-18-10.png", "zone_a": 615, "zone_b_eur": 579, "zone_c": 643, "zone_d": 670}, {"sku": null, "desc_es": "Kit Flat 20-13-10-13", "desc_en": "Kit Flat 20-13-10-13", "bl": 6, "group": 6, "img": "KIT-20-13T.png", "zone_a": 1312, "zone_b_eur": 1211, "zone_c": 1345, "zone_d": 1380}, {"sku": null, "desc_es": "Kit Flat 18-10-13", "desc_en": "Kit Flat 18-10-13", "bl": 7, "group": 7, "img": "KIT-18-10-13.webp", "zone_a": 1175, "zone_b_eur": 1083, "zone_c": 1203, "zone_d": 1230}, {"sku": null, "desc_es": "Kit 20-10-12-14", "desc_en": "Kit 20-10-12-14", "bl": 8, "group": 8, "img": "KIT-20T.webp", "zone_a": 1316, "zone_b_eur": 1214, "zone_c": 1349, "zone_d": 1384}]}, {"id": "kit_doble", "es": "Kit Doble Tensión TG", "en": "Double-Head TG Kit", "groups": [9], "products": [{"sku": null, "desc_es": "Kit Doble Tensión - 18-14-10-14", "desc_en": "Kit Doble Tensión - 18-14-10-14", "bl": 9, "group": 9, "img": "KIT-DT18.jpeg", "zone_a": 1690, "zone_b_eur": 1582, "zone_c": 1758, "zone_d": 1815}]}, {"id": "kit_qbombo", "es": "Qbombo", "en": "Qbombo", "groups": [10], "products": [{"sku": "KQ8", "desc_es": "Qbombo, Redo Ringo  12\", Tom 10 y 13\", 2 soportes de platos", "desc_en": "Qbombo, Snare Ringo  12\", Tom 10 y 13\", 2 soportes de platos", "bl": 10, "group": 10, "img": "KQ8.png", "zone_a": 1568, "zone_b_eur": 1441, "zone_c": 1601, "zone_d": 1636}]}, {"id": "kit_folk", "es": "Kit Folclórico Deluxe", "en": "Folk Kit Deluxe", "groups": [11], "products": [{"sku": "KFD18-12", "desc_es": "Bombo Flat 18\", Redo Ringo 12\", accesorios", "desc_en": "Kick Flat 18\", Snare Ringo 12\", accessories", "bl": 11, "group": 11, "img": "KFD18-12.webp", "zone_a": 723, "zone_b_eur": 676, "zone_c": 751, "zone_d": 777}]}]}, {"id": "bombos_leg", "es": "Bombos Legüeros Compactos", "en": "Compact Legüero Bass Drums", "subs": [{"id": "bl_bracket", "es": "Bombo Legüero Flat con Bracket", "en": "Flat Legüero w/ Bracket", "groups": [21], "products": [{"sku": "BLCB-14", "desc_es": "Bombo Legüero flat con bracket 14\"", "desc_en": "Legüero flat with bracket 14\"", "bl": 21, "group": 21, "img": "BLCB-14.webp", "zone_a": 273, "zone_b_eur": 259, "zone_c": 287, "zone_d": 299}, {"sku": "BLCB-16", "desc_es": "Bombo Legüero flat con bracket 16\"", "desc_en": "Legüero flat with bracket 16\"", "bl": "x", "group": 21, "img": "BLCB-16.png", "zone_a": 287, "zone_b_eur": 271, "zone_c": 301, "zone_d": 313}]}, {"id": "bl_patas", "es": "Bombo Legüero Flat con Patas", "en": "Flat Legüero w/ Legs", "groups": [22], "products": [{"sku": "BLCP-14", "desc_es": "Bombo Legüero flat con patas 14\"", "desc_en": "Legüero flat with legs 14\"", "bl": 22, "group": 22, "img": "BLCP-14.webp", "zone_a": 357, "zone_b_eur": 341, "zone_c": 379, "zone_d": 390}, {"sku": "BLCP-16", "desc_es": "Bombo Legüero flat con patas 16\"", "desc_en": "Legüero flat with legs 16\"", "bl": "x", "group": 22, "img": "BLCP-14.webp", "zone_a": 370, "zone_b_eur": 353, "zone_c": 392, "zone_d": 403}]}, {"id": "tom_leg", "es": "Tom Legüero Flat TG", "en": "Flat Legüero Tom TG", "groups": [23], "products": [{"sku": "T1TGC-10", "desc_es": "Tom legüero flat TG 10\"", "desc_en": "Tom legüero flat TG 10\"", "bl": 23, "group": 23, "img": "T1TGC-10.webp", "zone_a": 213, "zone_b_eur": 205, "zone_c": 227, "zone_d": 240}, {"sku": "T1TGC-12", "desc_es": "Tom legüero flat TG 12\"", "desc_en": "Tom legüero flat TG 12\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 222, "zone_b_eur": 213, "zone_c": 236, "zone_d": 249}, {"sku": "T1TGC-13", "desc_es": "Tom legüero flat TG 13\"", "desc_en": "Tom legüero flat TG 13\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 229, "zone_b_eur": 219, "zone_c": 243, "zone_d": 255}, {"sku": "T1TGC-14", "desc_es": "Tom legüero flat TG 14\"", "desc_en": "Tom legüero flat TG 14\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 233, "zone_b_eur": 223, "zone_c": 247, "zone_d": 260}, {"sku": "T1TGC-16", "desc_es": "Tom legüero flat TG 16\"", "desc_en": "Tom legüero flat TG 16\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 242, "zone_b_eur": 231, "zone_c": 256, "zone_d": 268}]}]}, {"id": "redoblantes", "es": "Redoblantes", "en": "Snare Drums", "subs": [{"id": "r_flat", "es": "Redoblante Flat", "en": "Flat Snare", "groups": [13], "products": [{"sku": "R1MB-10", "desc_es": "Redoblante Flat con Bracket 10\"", "desc_en": "Snare Flat whit bracket  10\"", "bl": 13, "group": 13, "img": "R1MB-10.webp", "zone_a": 251, "zone_b_eur": 240, "zone_c": 265, "zone_d": 278}, {"sku": "R1MB-12", "desc_es": "Redoblante Flat con Bracket 12\"", "desc_en": "Snare Flat whit bracket 12\"", "bl": "x", "group": 13, "img": "R1MB-10.webp", "zone_a": 265, "zone_b_eur": 252, "zone_c": 279, "zone_d": 292}, {"sku": "R1MB-13", "desc_es": "Redoblante Flat con Bracket 13\"", "desc_en": "Snare Flat whit bracket 13\"", "bl": "x", "group": 13, "img": "R1MB-10.webp", "zone_a": 281, "zone_b_eur": 267, "zone_c": 295, "zone_d": 308}]}, {"id": "r_ringo", "es": "Redoblante Ringo", "en": "Snare Ringo", "groups": [14], "products": [{"sku": "R20MB-10", "desc_es": "Redoblante Ringo con bracket 10\"", "desc_en": "Snare Ringo whit bracket 10\"", "bl": 14, "group": 14, "img": "R20MB-10.png", "zone_a": 269, "zone_b_eur": 255, "zone_c": 283, "zone_d": 296}, {"sku": "R20MB-12", "desc_es": "Redoblante Ringo con bracket 12\"", "desc_en": "Snare Ringo whit bracket  12\"", "bl": "x", "group": 14, "img": "R20MB-10.png", "zone_a": 287, "zone_b_eur": 272, "zone_c": 301, "zone_d": 314}, {"sku": "R20MB-13", "desc_es": "Redoblante Ringo con bracket 13\"", "desc_en": "Snare Ringo whit bracket  13\"", "bl": "x", "group": 14, "img": "R20MB-10.png", "zone_a": 307, "zone_b_eur": 290, "zone_c": 321, "zone_d": 334}]}, {"id": "r_katari", "es": "Redoblante Katari", "en": "Katari Snare", "groups": [15], "products": [{"sku": "R20B-13", "desc_es": "Redoblante Katari 13\"", "desc_en": "Snare Katari 13\"", "bl": 15, "group": 15, "img": "R20B-13.webp", "zone_a": 345, "zone_b_eur": 324, "zone_c": 359, "zone_d": 372}, {"sku": "R20B-14", "desc_es": "Redoblante Katari 14\"", "desc_en": "Snare Katari 14\"", "bl": "x", "group": 15, "img": "R20B-13.webp", "zone_a": 363, "zone_b_eur": 340, "zone_c": 377, "zone_d": 389}]}, {"id": "r_tg", "es": "Redoblante TG", "en": "Snare TG", "groups": [16], "products": [{"sku": "R2TG-13", "desc_es": "Redoblante TG 13\"", "desc_en": "Redoblante TG 13\"", "bl": 16, "group": 16, "img": "R2TG-13.png", "zone_a": 394, "zone_b_eur": 374, "zone_c": 415, "zone_d": 426}, {"sku": "R2TG-14", "desc_es": "Redoblante TG 14\"", "desc_en": "Redoblante TG 14\"", "bl": "x", "group": 16, "img": "R2TG-14.webp", "zone_a": 407, "zone_b_eur": 386, "zone_c": 429, "zone_d": 439}]}, {"id": "r_mano", "es": "Tambor de Mano", "en": "Hand Drum", "groups": [17], "products": [{"sku": "RTM-10", "desc_es": "Tambor de mano, con 2 bordonas", "desc_en": "Hand drum with 2 snare wire", "bl": 17, "group": 17, "img": "RTM-10.webp", "zone_a": 265, "zone_b_eur": 252, "zone_c": 279, "zone_d": 292}]}]}, {"id": "bombos", "es": "Bombos", "en": "Bass Drums", "subs": [{"id": "b_flat", "es": "Bombos Flat", "en": "Flat Bass Drums", "groups": [12], "products": [{"sku": "B1P-18", "desc_es": "Bombo Flat (simple parche) 18\"", "desc_en": "Kick Flat 18\"", "bl": 12, "group": 12, "img": "B1P-18.png", "zone_a": 348, "zone_b_eur": 333, "zone_c": 370, "zone_d": 381}, {"sku": "B1P-20", "desc_es": "Bombo Flat (simple parche) 20\"", "desc_en": "Kick Flat 20\"", "bl": "x", "group": 12, "img": "B1P-20.jpg", "zone_a": 367, "zone_b_eur": 350, "zone_c": 389, "zone_d": 400}, {"sku": "B1P-22", "desc_es": "Bombo Flat (simple parche) 22\"", "desc_en": "Kick Flat 22\"", "bl": "x", "group": 12, "img": "B1P-22.png", "zone_a": 381, "zone_b_eur": 362, "zone_c": 402, "zone_d": 413}]}]}, {"id": "toms", "es": "Toms", "en": "Toms", "subs": [{"id": "t_flat", "es": "Tom Flat", "en": "Flat Tom", "groups": [18], "products": [{"sku": "T1B-10", "desc_es": "Tom Flat simple parche con bracket 10\"", "desc_en": "Tom Flat with bracket 10\"", "bl": 18, "group": 18, "img": "T1B-10.png", "zone_a": 249, "zone_b_eur": 238, "zone_c": 263, "zone_d": 276}, {"sku": "T1B-12", "desc_es": "Tom Flat simple parche con bracket 12\"", "desc_en": "Tom Flat with bracket 12\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 262, "zone_b_eur": 249, "zone_c": 276, "zone_d": 288}, {"sku": "T1B-13", "desc_es": "Tom Flat simple parche con bracket 13\"", "desc_en": "Tom Flat with bracket 13\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 272, "zone_b_eur": 258, "zone_c": 286, "zone_d": 299}, {"sku": "T1B-14", "desc_es": "Tom Flat simple parche con bracket 14\"", "desc_en": "Tom Flat with bracket 14\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 274, "zone_b_eur": 260, "zone_c": 288, "zone_d": 300}, {"sku": "T1B-16", "desc_es": "Tom Flat simple parche con bracket 16\"", "desc_en": "Tom Flat with bracket 16\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 285, "zone_b_eur": 270, "zone_c": 299, "zone_d": 312}]}, {"id": "t_tg", "es": "Tom Flat TG", "en": "Flat Tom TG", "groups": [19], "products": [{"sku": "T1TG-10", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 10\"", "desc_en": "Tom Flat with lug, and bracket 10\"", "bl": 19, "group": 19, "img": "T1TG-10.png", "zone_a": 168, "zone_b_eur": 160, "zone_c": 178, "zone_d": 184}, {"sku": "T1TG-12", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 12\"", "desc_en": "Tom Flat with lug, and bracket 12\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 199, "zone_b_eur": 192, "zone_c": 213, "zone_d": 226}, {"sku": "T1TG-13", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 13\"", "desc_en": "Tom Flat with lug, and bracket 13\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 207, "zone_b_eur": 199, "zone_c": 221, "zone_d": 233}, {"sku": "T1TG-14", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 14\"", "desc_en": "Tom Flat with lug, and bracket14\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 215, "zone_b_eur": 207, "zone_c": 229, "zone_d": 242}, {"sku": "T1TG-16", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 16\"", "desc_en": "Tom Flat with lug, and bracket 16\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 227, "zone_b_eur": 217, "zone_c": 241, "zone_d": 253}]}, {"id": "t_doble", "es": "Tom Doble Parche TG", "en": "Double-Head TG Tom", "groups": [20], "products": [{"sku": "T2TGB-10", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 10\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 10\"", "bl": 20, "group": 20, "img": "T2TGB-10.jpg", "zone_a": 288, "zone_b_eur": 272, "zone_c": 302, "zone_d": 314}, {"sku": "T2TGB-12", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 12\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 12\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 303, "zone_b_eur": 286, "zone_c": 317, "zone_d": 330}, {"sku": "T2TGB-13", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 13\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 13\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 328, "zone_b_eur": 315, "zone_c": 350, "zone_d": 361}, {"sku": "T2TGB-14", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 14\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 14\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 341, "zone_b_eur": 326, "zone_c": 362, "zone_d": 373}]}]}, {"id": "accesorios", "es": "Accesorios", "en": "Accessories", "subs": [{"id": "acc_mont", "es": "Accesorios de Montaje", "en": "Mounting Accessories", "groups": [25], "products": [{"sku": "CLR", "desc_es": "Clamp Recto", "desc_en": "Clamp Recto", "bl": "x", "group": 25, "img": "CLR.png", "zone_a": 68, "zone_b_eur": 70, "zone_c": 78, "zone_d": 84}, {"sku": "CTH", "desc_es": "Clamp Tom holder", "desc_en": "Clamp Tom holder", "bl": "x", "group": 25, "img": "CTH.webp", "zone_a": 76, "zone_b_eur": 77, "zone_c": 85, "zone_d": 92}, {"sku": "SR", "desc_es": "Soporte tambor/tom", "desc_en": "Cymbal or Snare Stand", "bl": "x", "group": 25, "img": "SR.webp", "zone_a": 106, "zone_b_eur": 109, "zone_c": 120, "zone_d": 133}]}, {"id": "acc_cuero", "es": "Cueros y Aros", "en": "Heads & Rims", "groups": [24], "products": [{"sku": "KCSA", "desc_es": "Kit cuero y semiaro", "desc_en": "Kit cuero y semiaro", "bl": 24, "group": 24, "img": "KCSA.png", "zone_a": 89, "zone_b_eur": 89, "zone_c": 99, "zone_d": 105}]}]}];
+const COUNTRY_ZONE={"Anguilla": "A", "Antigua & Barbuda": "A", "Aruba": "A", "Bahama": "A", "Barbados": "A", "Belize": "A", "Bermuda": "A", "Bolivia": "A", "Bonaire Sint Eustatius and Saba": "A", "Brazil": "A", "British Virgin Islands": "A", "Canadá": "A", "Cayman Islands": "A", "Chile": "A", "Colombia": "A", "Costa Rica": "A", "Curazao": "A", "Dominica": "A", "Dominican Republic": "A", "Ecuador": "A", "El Salvador": "A", "French Guiana": "A", "Grenada": "A", "Guadeloupe": "A", "Guatemala": "A", "Guyana": "A", "Haiti": "A", "Honduras": "A", "Jamaica": "A", "Martinique": "A", "Mexico": "A", "Monserrat": "A", "Netherlands Antilles": "A", "Nicaragua": "A", "Panama": "A", "Paraguay": "A", "Peru": "A", "Puerto Rico - Arguadilla - BQN": "A", "Puerto Rico - Arecibo - ARE": "A", "Puerto Rico - Carolina (FAJ) - FAJ": "A", "Puerto Rico - Carolina (NRR) - NRR": "A", "Puerto Rico - Guaynabo - SIG": "A", "Puerto Rico - Ponce - PSE": "A", "Puerto Rico - San Juan - SJU": "A", "Saint Lucia": "A", "St. Kitts and Nevis": "A", "St. Maarten": "A", "St. Martin": "A", "St. Vincent & the Grenadines": "A", "Suriname": "A", "Trinidad & Tobago": "A", "Turks & Caicos Islands": "A", "U.S. Virgin Islands": "A", "Uruguay": "A", "Venezuela": "A", "Andorra": "B", "Austria": "B", "Belgium": "B", "Bulgaria": "B", "Czech Republic": "B", "Denmark": "B", "Estonia": "B", "Finland": "B", "France": "B", "Germany": "B", "Gibraltar": "B", "Greece": "B", "Hungary": "B", "Iceland": "B", "Ireland": "B", "Italy": "B", "Latvia": "B", "Liechtenstein": "B", "Lithuania": "B", "Luxembourg": "B", "Malta": "B", "Monaco": "B", "Netherlands": "B", "Norway": "B", "Poland": "B", "Portugal": "B", "Romania": "B", "Russian Federation": "B", "Slovakia": "B", "Slovenia": "B", "South Africa": "B", "Spain": "B", "Sweden": "B", "Switzerland": "B", "United Kingdom (Great Britain)": "B", "Vatican City": "B", "Australia": "C", "China": "C", "Guam": "C", "Hong Kong": "C", "Indonesia": "C", "Japan": "C", "Macau": "C", "Malaysia": "C", "Birmania": "C", "New Zealand": "C", "Phillipines": "C", "Singapore": "C", "South Korea": "C", "Taiwan": "C", "Thailand": "C", "Vietnam": "C", "Afghanistan": "D", "Albania": "D", "Algeria": "D", "American Samoa": "D", "Angola": "D", "Armenia": "D", "Azerbaijan": "D", "Bahrain": "D", "Bangladesh": "D", "Belarus": "D", "Benin": "D", "Bhutan": "D", "Bosnia-Herzegovina": "D", "Botswana": "D", "Brunei": "D", "Burkina Faso": "D", "Burundi": "D", "Cambodia": "D", "Cameroon": "D", "Cape Verde": "D", "Central African Republic": "D", "Chad": "D", "Cook Islands": "D", "Côte D'ivoire (Ivory Coast)": "D", "Croatia": "D", "Cyprus": "D", "Democratic Republic of the Congo": "D", "Djibouti": "D", "East Timor": "D", "Egypt": "D", "Equatorial Guinea": "D", "Eritrea": "D", "Ethiopia": "D", "Islas Feroe": "D", "Fiji": "D", "French Polynesia": "D", "Gabon": "D", "Gambia": "D", "Ghana": "D", "Greenland": "D", "Guinea": "D", "Guinea-Bissau": "D", "India": "D", "Iran": "D", "Iraq": "D", "Israel": "D", "Jordan": "D", "Kazakhstan": "D", "Kenya": "D", "Kiribati": "D", "Kuwait": "D", "Kyrgyzstan": "D", "Laos": "D", "Lebanon": "D", "Lesotho": "D", "Liberia": "D", "Macedonia": "D", "Madagascar": "D", "Malawi": "D", "Maldives": "D", "Mali": "D", "Marshall Islands": "D", "Mauritania": "D", "Mauritius": "D", "Micronesia": "D", "Mongolia": "D", "Montenegro": "D", "Morocco": "D", "Mozambique": "D", "Namibia": "D", "Nauru": "D", "Nepal": "D", "New Caledonia": "D", "Niger": "D", "Nigeria": "D", "Niue": "D", "Northern Mariana Islands": "D", "Oman": "D", "Pakistan": "D", "Palau": "D", "Territorio Palestino": "D", "Papua New Guinea": "D", "Qatar": "D", "Réunion": "D", "Rwanda": "D", "Samoa": "D", "Saudi Arabia": "D", "Senegal": "D", "Serbia": "D", "Seychelles": "D", "Sierra Leone": "D", "Islas Salomón": "D", "Sri Lanka": "D", "Sudan": "D", "Swaziland": "D", "Syrian Arab Republic": "D", "Togo": "D", "Tonga": "D", "Tunisia": "D", "Turquía": "D", "Turkmenistan": "D", "Tuvalu": "D", "Uganda": "D", "Ukraine": "D", "Emiratos Árabes Unidos": "D", "United Republic of Tanzania": "D", "Uzbekistan": "D", "Vanuatu": "D", "Wallis & Futuna": "D", "Yemen": "D", "Zambia": "D", "Zimbabwe": "D"};
+const ALL_COUNTRIES=["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahama", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Birmania", "Bolivia", "Bonaire Sint Eustatius and Saba", "Bosnia-Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canadá", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Cook Islands", "Costa Rica", "Croatia", "Curazao", "Cyprus", "Czech Republic", "Côte D'ivoire (Ivory Coast)", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Emiratos Árabes Unidos", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Islas Feroe", "Islas Salomón", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Monserrat", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Phillipines", "Poland", "Portugal", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Qatar", "Romania", "Russian Federation", "Rwanda", "Réunion", "Saint Lucia", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Territorio Palestino", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkmenistan", "Turks & Caicos Islands", "Turquía", "Tuvalu", "U.S. Virgin Islands", "Uganda", "Ukraine", "United Kingdom (Great Britain)", "United Republic of Tanzania", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"];
+const ZONES={A:["Anguilla", "Antigua & Barbuda", "Aruba", "Bahama", "Barbados", "Belize", "Bermuda", "Bolivia", "Bonaire Sint Eustatius and Saba", "Brazil", "British Virgin Islands", "Canadá", "Cayman Islands", "Chile", "Colombia", "Costa Rica", "Curazao", "Dominica", "Dominican Republic", "Ecuador", "El Salvador", "French Guiana", "Grenada", "Guadeloupe", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Martinique", "Mexico", "Monserrat", "Netherlands Antilles", "Nicaragua", "Panama", "Paraguay", "Peru", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Saint Lucia", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Suriname", "Trinidad & Tobago", "Turks & Caicos Islands", "U.S. Virgin Islands", "Uruguay", "Venezuela"],B:["Andorra", "Austria", "Belgium", "Bulgaria", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Gibraltar", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Monaco", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Russian Federation", "Slovakia", "Slovenia", "South Africa", "Spain", "Sweden", "Switzerland", "United Kingdom (Great Britain)", "Vatican City"],C:["Australia", "China", "Guam", "Hong Kong", "Indonesia", "Japan", "Macau", "Malaysia", "Birmania", "New Zealand", "Phillipines", "Singapore", "South Korea", "Taiwan", "Thailand", "Vietnam"],D:["Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Belarus", "Benin", "Bhutan", "Bosnia-Herzegovina", "Botswana", "Brunei", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Cook Islands", "Côte D'ivoire (Ivory Coast)", "Croatia", "Cyprus", "Democratic Republic of the Congo", "Djibouti", "East Timor", "Egypt", "Equatorial Guinea", "Eritrea", "Ethiopia", "Islas Feroe", "Fiji", "French Polynesia", "Gabon", "Gambia", "Ghana", "Greenland", "Guinea", "Guinea-Bissau", "India", "Iran", "Iraq", "Israel", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Lesotho", "Liberia", "Macedonia", "Madagascar", "Malawi", "Maldives", "Mali", "Marshall Islands", "Mauritania", "Mauritius", "Micronesia", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "New Caledonia", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Oman", "Pakistan", "Palau", "Territorio Palestino", "Papua New Guinea", "Qatar", "Réunion", "Rwanda", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Islas Salomón", "Sri Lanka", "Sudan", "Swaziland", "Syrian Arab Republic", "Togo", "Tonga", "Tunisia", "Turquía", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "Emiratos Árabes Unidos", "United Republic of Tanzania", "Uzbekistan", "Vanuatu", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"]};
+const ZC={
+  A:{cur:'USD',sym:'$',nes:'Zona A — América',nen:'Zone A — Americas',key:'zone_a'},
+  B:{cur:'EUR',sym:'€',nes:'Zona B — Europa',nen:'Zone B — Europe',key:'zone_b_eur'},
+  C:{cur:'USD',sym:'$',nes:'Zona C — Asia Pacífico',nen:'Zone C — Asia Pacific',key:'zone_c'},
+  D:{cur:'USD',sym:'$',nes:'Zona D — Resto del Mundo',nen:'Zone D — Rest of World',key:'zone_d'},
+};
+const FLAGS={France:'🇫🇷',Germany:'🇩🇪',Spain:'🇪🇸',Italy:'🇮🇹','United Kingdom (Great Britain)':'🇬🇧',
+  Brazil:'🇧🇷','México':'🇲🇽',Colombia:'🇨🇴',Chile:'🇨🇱',Peru:'🇵🇪',Ecuador:'🇪🇨',
+  Netherlands:'🇳🇱',Belgium:'🇧🇪',Portugal:'🇵🇹',Austria:'🇦🇹',Switzerland:'🇨🇭',
+  Australia:'🇦🇺',Japan:'🇯🇵','South Korea':'🇰🇷',China:'🇨🇳',India:'🇮🇳',
+  'Canadá':'🇨🇦',Mexico:'🇲🇽',Sweden:'🇸🇪',Norway:'🇳🇴',Denmark:'🇩🇰',
+  Poland:'🇵🇱','Czech Republic':'🇨🇿','Russian Federation':'🇷🇺','South Africa':'🇿🇦',
+  Israel:'🇮🇱',Turkey:'🇹🇷','United States':'🇺🇸','New Zealand':'🇳🇿',Ireland:'🇮🇪',
+  Greece:'🇬🇷',Hungary:'🇭🇺',Romania:'🇷🇴',Finland:'🇫🇮',Luxembourg:'🇱🇺',
+  'Uruguay':'🇺🇾','Paraguay':'🇵🇾','Bolivia':'🇧🇴','Venezuela':'🇻🇪',
+};
+const TL={
+  es:[
+    {y:'2017',h:'Inicio del proyecto',p:'Bruno Iberti comienza el desarrollo del concepto de batería flat en Bragado, Argentina.'},
+    {y:'2019',h:'Primeros instrumentos',p:'Se producen y venden los primeros bombos y redoblantes flat a músicos locales.'},
+    {y:'2021',h:'Expansión nacional',p:'Los instrumentos Brums comienzan a llegar a distintas provincias de Argentina.'},
+    {y:'2022',h:'Primeras ventas internacionales',p:'Los primeros instrumentos cruzan fronteras. Músicos de distintos países descubren Brums.'},
+    {y:'2024',h:'Catálogo internacional',p:'Se consolida la oferta de envíos internacionales via FedEx con precios por zona geográfica.'},
+  ],
+  en:[
+    {y:'2017',h:'Project launch',p:'Bruno Iberti begins developing the flat drum kit concept in Bragado, Argentina.'},
+    {y:'2019',h:'First instruments',p:'The first flat bass drums and snares are produced and sold to local musicians.'},
+    {y:'2021',h:'National expansion',p:'Brums instruments start reaching musicians across different Argentine provinces.'},
+    {y:'2022',h:'First international sales',p:'The first instruments cross borders. Musicians from different countries discover Brums.'},
+    {y:'2024',h:'International catalog',p:'International FedEx shipping consolidated with pricing by geographic zone.'},
+  ]
+};
+const FRIENDS=[
+  {name:'Comunicarte',d:{es:'Colectivo musical de Bragado.',en:'Music collective from Bragado.'}},
+  {name:'Comunidad Brums',d:{es:'Músicos de Argentina y el mundo que tocan con instrumentos Brums.',en:'Musicians from Argentina and the world playing Brums instruments.'}},
+];
+const T={
+  es:{
+    tag:'CATÁLOGO INTERNACIONAL',sub:'Bombos flat artesanales — compactos, livianos, con identidad sonora propia.',
+    zone:z=>`${ZC[z].nes} · ${ZC[z].cur}`,nozone:'Seleccioná tu país para ver precios',
+    note:'★ Fabricación a pedido · Envíos via FedEx · Impuestos de aduana NO incluidos',
+    nb:'<strong>Fabricación a pedido</strong> · Envíos FedEx desde Argentina · <strong>Los precios NO incluyen impuestos/aranceles de aduana del país destino</strong>',
+    f1h:'DISEÑO INNOVADOR',f1b:'Batería compacta sin perder identidad sonora. Madera artesanal + piezas en impresión 3D.',
+    f2h:'ENVÍO MUNDIAL',f2b:'FedEx desde Bragado, Argentina. Los precios incluyen el costo de envío internacional.',
+    f3h:'A PEDIDO',f3b:'Cada instrumento se fabrica artesanalmente al recibir el encargo. Producción bajo pedido.',
+    f4h:'CONTACTO DIRECTO',f4b:'Pedidos por WhatsApp o Instagram. Atención personalizada de Bruno Iberti.',
+    cta:'Ver Catálogo →',plabel:'Precio c/envío',noprice:'Consultar',mto:'A pedido',
+    covh:'COBERTURA DE ENVÍO',covp:'FedEx desde Argentina · Precios incluyen envío · Aranceles de aduana no incluidos',
+    zlabels:{A:'América',B:'Europa',C:'Asia Pacífico',D:'Resto del Mundo'},
+    abh:'QUIÉNES <span style="color:var(--ac)">SOMOS</span>',
+    ablead:'Brums Art Drums es un proyecto independiente creado por <strong>Bruno Iberti</strong> en Bragado, Argentina.',
+    abp1:'Nace de la búsqueda de una nueva forma de entender la batería: más liviana, más compacta y adaptable a los músicos actuales, sin perder identidad sonora ni calidad. La idea surge a partir de una necesidad concreta: facilitar el transporte, armado y uso del instrumento, especialmente en contextos urbanos, escenarios pequeños o músicos que viajan.',
+    abp2:'En Brums diseñamos y fabricamos cada instrumento de manera artesanal, combinando madera trabajada a mano con piezas diseñadas en impresión 3D. Creemos en un producto que no solo funcione bien, sino que también inspire.',
+    abp3:'Hace varios años que desarrollamos y perfeccionamos este concepto, vendiendo nuestros instrumentos de forma directa a músicos en Argentina y distintos países del mundo. Proyecto impulsado por la pasión por la música, la innovación y el hacer con identidad propia.',
+    trh:'TRAYECTORIA <span style="color:var(--ac)">Y RECONOCIMIENTOS</span>',
+    trlead:'Desde 2017 desarrollamos de forma independiente un concepto propio que con el tiempo trascendió el taller.',
+    trintl:'Hoy nuestros instrumentos están presentes en distintos países del mundo. Cada venta es una validación de que el concepto Brums funciona más allá de las fronteras.',
+    frlead:'Una selección de artistas y proyectos vinculados a Brums Art Drums. Algunos tocan con baterías Brums, otros utilizan componentes o son parte de la comunidad.',
+    frspot:'La comunidad Brums en Spotify',
+    cth:'CONTACTO',ctlead:'Para consultas, pedidos o información sobre envíos internacionales, contactanos directamente.',
+    ctloc:'Ubicación',
+    ctnote:'Los pedidos internacionales se coordinan vía WhatsApp o email. Confirmamos disponibilidad, tiempo de producción y método de pago. Envíos vía FedEx. <strong style="color:var(--tx2)">Los aranceles e impuestos del país destino son responsabilidad del comprador.</strong>',
+    flegal:'Los precios incluyen costo de envío FedEx. <strong>No incluyen impuestos, aranceles ni tasas de importación del país destino</strong>, que son responsabilidad del comprador. Todos los instrumentos se fabrican a pedido. Precios sujetos a actualización.',
+    nv:{home:'Inicio',catalog:'Catálogo',about:'Quiénes Somos',track:'Trayectoria',friends:'Amigos',contact:'Contacto'},
+    sc:'Seleccioná tu país...',ss:'Buscar país...',
+  },
+  en:{
+    tag:'INTERNATIONAL CATALOG',sub:'Handcrafted flat drums — compact, lightweight, with their own sonic identity.',
+    zone:z=>`${ZC[z].nen} · ${ZC[z].cur}`,nozone:'Select your country to see prices',
+    note:'★ Made to order · FedEx shipping · Customs duties not included',
+    nb:'<strong>Made to order</strong> · International FedEx from Argentina · <strong>Prices do NOT include import duties or customs taxes at destination</strong>',
+    f1h:'INNOVATIVE DESIGN',f1b:'Compact drum kit without sacrificing tone. Handcrafted wood + 3D printed components.',
+    f2h:'WORLDWIDE SHIPPING',f2b:'FedEx from Bragado, Argentina. Catalog prices include the international shipping cost.',
+    f3h:'MADE TO ORDER',f3b:'Each instrument is handcrafted upon receiving the order. Production time on request.',
+    f4h:'DIRECT CONTACT',f4b:'Orders via WhatsApp or Instagram. Personal attention from Bruno Iberti.',
+    cta:'Browse Catalog →',plabel:'Price w/shipping',noprice:'On request',mto:'Made to order',
+    covh:'SHIPPING COVERAGE',covp:'FedEx from Argentina · Prices include shipping · Import duties not included',
+    zlabels:{A:'Americas',B:'Europe',C:'Asia Pacific',D:'Rest of World'},
+    abh:'ABOUT <span style="color:var(--ac)">US</span>',
+    ablead:'Brums Art Drums is an independent project created by <strong>Bruno Iberti</strong> in Bragado, Argentina.',
+    abp1:"It was born from a search for a new way to understand the drum kit: lighter, more compact, and adaptable to today\'s musicians, without losing sonic identity or quality. The idea arose from a concrete need: to make the instrument easier to transport, set up, and use—especially in urban settings, small stages, or for musicians who travel.",
+    abp2:'At Brums, we design and build each instrument by hand, combining handcrafted wood with 3D-printed components. We believe in a product that not only works well, but also inspires.',
+    abp3:'For several years we have developed and perfected this concept, selling our instruments directly to musicians in Argentina and countries around the world. A project driven by passion for music, innovation, and making things with genuine identity.',
+    trh:'HISTORY <span style="color:var(--ac)">&amp; ACHIEVEMENTS</span>',
+    trlead:'Since 2017 we have independently developed our own concept that has grown beyond the workshop.',
+    trintl:'Today our instruments are present in different countries around the world. Each sale validates that the Brums concept works beyond borders.',
+    frlead:'A selection of artists and projects connected to Brums Art Drums. Some play with Brums kits, others use components or are part of the community.',
+    frspot:'The Brums community on Spotify',
+    cth:'CONTACT',ctlead:'For inquiries, orders, or international shipping information, contact us directly.',
+    ctloc:'Location',
+    ctnote:'International orders are coordinated via WhatsApp or email. We confirm availability, production time and payment method. Shipping via FedEx. <strong style="color:var(--tx2)">Import duties and customs taxes at the destination country are the buyer\'s responsibility.</strong>',
+    flegal:'Prices include FedEx shipping cost. <strong>They do not include import duties, customs fees, or taxes at destination</strong>, which are the buyer\'s responsibility. All instruments are made to order. Prices subject to change.',
+    nv:{home:'Home',catalog:'Catalog',about:'About Us',track:'History',friends:'Friends',contact:'Contact'},
+    sc:'Select your country...',ss:'Search country...',
+  }
+};
+
+// ──────────── STATE ────────────
+let lang='en', zone=null, country=null, curSec='home';
+
+// ──────────── INIT ────────────
+(function init(){
+  lang=(navigator.language||'').toLowerCase().startsWith('es')?'es':'en';
+  buildCountryList();
+  document.getElementById('bes').classList.toggle('on',lang==='es');
+  document.getElementById('ben').classList.toggle('on',lang==='en');
+  renderAll();
+})();
+
+// ──────────── LANG ────────────
+function setLang(l){lang=l;document.getElementById('bes').classList.toggle('on',l==='es');document.getElementById('ben').classList.toggle('on',l==='en');document.getElementById('csearch').placeholder=T[l].ss;if(!country)document.getElementById('scname').textContent=T[l].sc;renderAll();}
+
+// ──────────── COUNTRY ────────────
+function setCountry(c){
+  country=c;zone=COUNTRY_ZONE[c];
+  document.getElementById('scname').textContent=c;
+  document.getElementById('sflag').textContent=FLAGS[c]||'🌍';
+  const zp=document.getElementById('szp');zp.textContent='Zona '+zone;zp.style.display='';
+  closeDrop();renderAll();
+  document.querySelectorAll('.citem').forEach(el=>el.classList.toggle('sel',el.dataset.c===c));
+}
+function buildCountryList(){
+  document.getElementById('clist').innerHTML=ALL_COUNTRIES.map(c=>
+    `<div class="citem" data-c="${c}" onclick="setCountry(this.dataset.c)"><span>${FLAGS[c]||'🌍'}</span><span>${c}</span><span class="cizone">Z.${COUNTRY_ZONE[c]}</span></div>`
+  ).join('');
+}
+function filterC(q){
+  const v=q.toLowerCase();let vis=0;
+  document.querySelectorAll('.citem').forEach(el=>{const m=!v||el.dataset.c.toLowerCase().includes(v);el.style.display=m?'':'none';if(m)vis++;});
+  let nr=document.getElementById('cnr');
+  if(!vis){if(!nr){nr=document.createElement('div');nr.id='cnr';nr.className='cnr';nr.textContent='No results';document.getElementById('clist').appendChild(nr);}nr.style.display='';}
+  else if(nr)nr.style.display='none';
+}
+function toggleDrop(){const d=document.getElementById('cdrop'),b=document.getElementById('cbtn');const o=d.classList.toggle('open');b.classList.toggle('open',o);if(o)setTimeout(()=>document.getElementById('csearch').focus(),40);}
+function closeDrop(){document.getElementById('cdrop').classList.remove('open');document.getElementById('cbtn').classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('cwrap').contains(e.target))closeDrop();});
+
+// ──────────── SECTIONS ────────────
+function goSec(s){
+  curSec=s;
+  document.querySelectorAll('.psec').forEach(el=>el.classList.remove('on'));
+  document.getElementById('sec-'+s).classList.add('on');
+  document.querySelectorAll('.hnav a').forEach(a=>a.classList.remove('on'));
+  const nv=document.getElementById('nv-'+s);if(nv)nv.classList.add('on');
+  document.getElementById('snav').style.display=s==='catalog'?'block':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(s==='catalog')renderCatalog();
+}
+
+// ──────────── RENDER ALL ────────────
+function renderAll(){
+  const t=T[lang],z=zone;
+  set('ht',t.tag);set('hsub',t.sub);
+  const hz=document.getElementById('hzone');
+  hz.innerHTML=z?`<strong>${t.zone(z)}</strong>`:`<span>${t.nozone}</span>`;
+  set('hnote',t.note);set('nbar',t.nb);
+  // Feature tiles
+  document.getElementById('ftiles').innerHTML=['f1','f2','f3','f4'].map(k=>`<div class="ftile"><div class="ftile-icon">${{f1:'🎯',f2:'✈️',f3:'🔨',f4:'💬'}[k]}</div><div class="ftile-h">${t[k+'h']}</div><div class="ftile-b">${t[k+'b']}</div></div>`).join('');
+  set('cta',t.cta);
+  // Nav
+  Object.keys(t.nv).forEach(k=>{const el=document.getElementById('nv-'+k);if(el)el.textContent=t.nv[k];});
+  // Footer
+  set('fl-home',t.nv.home);set('fl-cat',t.nv.catalog);set('fl-ab',t.nv.about);set('fl-tr',t.nv.track);set('fl-fr',t.nv.friends);set('fl-ct',t.nv.contact);
+  set('flegal',t.flegal);
+  // About
+  set('ab-h',t.abh);set('ab-lead',t.ablead);set('ab-p1',t.abp1);set('ab-p2',t.abp2);set('ab-p3',t.abp3);
+  // Trayectoria
+  set('tr-h',t.trh);set('tr-lead',t.trlead);set('tr-intl',t.trintl);
+  document.getElementById('tl-body').innerHTML=TL[lang].map(i=>`<div class="tl-item"><div class="tl-yr">${i.y}</div><div><div class="tl-h">${i.h}</div><div class="tl-p">${i.p}</div></div></div>`).join('');
+  // Friends
+  set('fr-lead',t.frlead);set('fr-spot',t.frspot);
+  document.getElementById('fg').innerHTML=FRIENDS.map(f=>`<div class="fc"><div class="fc-n">${f.name}</div><div class="fc-d">${f.d[lang]}</div></div>`).join('');
+  // Contact
+  set('ct-h',t.cth);set('ct-lead',t.ctlead);set('ct-loc',t.ctloc);set('ct-note',t.ctnote);
+  // Coverage
+  set('covh',t.covh);set('covp',t.covp);
+  renderZones();
+  if(curSec==='catalog')renderCatalog();
+}
+function set(id,html){const el=document.getElementById(id);if(el)el.innerHTML=html;}
+
+// ──────────── CATALOG ────────────
+
+function pph(lbl){
+  return '<div class="pph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><ellipse cx="12" cy="12" rx="10" ry="5"/><ellipse cx="12" cy="8" rx="10" ry="5"/><line x1="2" y1="12" x2="2" y2="17"/><line x1="22" y1="12" x2="22" y2="17"/><ellipse cx="12" cy="17" rx="10" ry="5"/></svg><span>'+lbl+'</span></div>';
+}
+function cardImg(p){
+  const lbl = p.sku || 'KIT';
+  if(!p.img) return '<div class="pimg">'+pph(lbl)+'</div>';
+  return '<div class="pimg"><img src="'+p.img+'" alt="'+lbl+'" loading="lazy" data-lbl="'+lbl+'" onerror="this.parentElement.innerHTML=pph(this.dataset.lbl)"></div>';
+}
+
+function renderCatalog(){
+  const t=T[lang];const zc=zone?ZC[zone]:null;
+  // Sidebar
+  let sbHTML='<div class="sb-title">'+t.nv.catalog+'</div>';
+  STRUCTURE.forEach(sec=>{
+    const hasProds=sec.subs.some(s=>s.products.length>0);
+    if(!hasProds)return;
+    const subs=sec.subs.filter(s=>s.products.length>0).map(s=>
+      `<a class="sb-sub" id="sbl-${s.id}" onclick="scrollSub('${s.id}')">${s[lang]}</a>`
+    ).join('');
+    sbHTML+=`<div class="sb-sec"><div class="sb-par" id="sbp-${sec.id}" onclick="togSb('${sec.id}')">${sec[lang]}<span class="sb-ch">▼</span></div><div class="sb-subs" id="sbsubs-${sec.id}">${subs}</div></div>`;
+  });
+  document.getElementById('sidebar').innerHTML=sbHTML;
+
+  // Products
+  let paHTML='';let navItems=[];
+  STRUCTURE.forEach(sec=>{
+    sec.subs.forEach(sub=>{
+      if(!sub.products.length)return;
+      navItems.push({id:sub.id,label:sub[lang]});
+      const cards=sub.products.map(p=>{
+        const price=zc?p[zc.key]:null;
+        const desc=lang==='es'?p.desc_es:p.desc_en;
+        const priceH=price?`<span class="pcur">${zc.sym}</span><span class="pval">${price.toLocaleString()}</span>`:`<span class="pnp">${t.noprice}</span>`;
+        const skuLine=p.sku?`<div class="psku">${p.sku}</div>`:``;
+        return `<div class="pcard">${cardImg(p)}
+        <div class="pbody">${skuLine}<div class="pmto">${t.mto}</div><div class="pname">${desc}</div>
+        <div class="pprice"><span class="plabel">${t.plabel}</span><span>${priceH}</span></div></div></div>`;
+      }).join('');
+      paHTML+=`<div class="cat-sub" id="sub-${sub.id}"><div class="sub-hdr"><h3>${sub[lang]}</h3><span class="sub-cnt">${sub.products.length}</span></div><div class="pgrid">${cards}</div></div>`;
+    });
+  });
+  document.getElementById('parea').innerHTML=paHTML;
+
+  // Secondary nav
+  document.getElementById('snavi').innerHTML=navItems.map(i=>`<button class="spill" id="pill-${i.id}" onclick="scrollSub('${i.id}')">${i.label}</button>`).join('');
+
+  // Open first sidebar section
+  if(STRUCTURE.length){const f=STRUCTURE[0];const sb=document.getElementById('sbsubs-'+f.id);const sp=document.getElementById('sbp-'+f.id);if(sb){sb.classList.add('on');sp&&sp.classList.add('exp');}}
+}
+
+function togSb(id){
+  const subs=document.getElementById('sbsubs-'+id);const par=document.getElementById('sbp-'+id);
+  const isOpen=subs&&subs.classList.contains('on');
+  document.querySelectorAll('.sb-subs').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.sb-par').forEach(e=>e.classList.remove('exp'));
+  if(!isOpen&&subs){subs.classList.add('on');par&&par.classList.add('exp');}
+}
+function scrollSub(id){
+  const el=document.getElementById('sub-'+id);
+  if(el){const top=el.getBoundingClientRect().top+scrollY-130;window.scrollTo({top,behavior:'smooth'});}
+  document.querySelectorAll('.spill').forEach(p=>p.classList.remove('on'));
+  const pill=document.getElementById('pill-'+id);if(pill)pill.classList.add('on');
+  document.querySelectorAll('.sb-sub').forEach(s=>s.classList.remove('on'));
+  const sb=document.getElementById('sbl-'+id);if(sb)sb.classList.add('on');
+}
+
+// ──────────── ZONES ────────────
+function renderZones(){
+  const t=T[lang];
+  document.getElementById('zgrid').innerHTML=['A','B','C','D'].map(z=>{
+    const cs=ZONES[z]||[];const zc=ZC[z];const isA=z===zone;
+    return `<div class="zcard ${isA?'az':''}"><div class="zcardh"><div class="zbadge">${z}</div><div><h3>ZONA ${z}</h3><div style="font-size:11px;color:var(--mu)">${t.zlabels[z]}</div></div><div class="zcur">${zc.cur}</div></div><div class="ctags">${cs.map(c=>`<span class="ctag">${c}</span>`).join('')}</div></div>`;
+  }).join('');
+}
+
+// ──────────── SCROLL ────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('sct').style.display=scrollY>400?'flex':'none';
+  if(curSec==='catalog'){
+    document.querySelectorAll('.cat-sub').forEach(el=>{
+      const r=el.getBoundingClientRect();
+      if(r.top<=140&&r.bottom>140){
+        const id=el.id.replace('sub-','');
+        document.querySelectorAll('.spill').forEach(p=>p.classList.remove('on'));
+        const pill=document.getElementById('pill-'+id);if(pill)pill.classList.add('on');
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
