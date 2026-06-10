@@ -6,7 +6,7 @@
 <title>Brums Art Drums — International Catalog</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0d0d;--sf:#161616;--card:#1b1b1b;--card2:#212121;--br:#282828;--br2:#353535;--ac:#c8a84b;--ac2:#e6c875;--acd:#c8a84b1a;--tx:#f0ede8;--tx2:#bbb;--mu:#777;--gr:#4caf7a;--fh:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--r:10px}
+:root{--bg:#0d0d0d;--sf:#161616;--card:#1b1b1b;--card2:#212121;--br:#282828;--br2:#353535;--ac:#c8a84b;--ac2:#e6c875;--acd:#c8a84b1a;--tx:#f0ede8;--tx2:#bbb;--mu:#777;--gr:#4caf7a;--wa:#25D366;--wa-hover:#1ebd5a;--fh:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--r:10px}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--tx);font-family:var(--fb);font-size:15px;line-height:1.6}
 a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:var(--fb)}
@@ -14,8 +14,8 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:var(--fb)
 /* HEADER */
 header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:blur(18px);border-bottom:1px solid var(--br)}
 .hdr{max-width:1340px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:14px}
-.logo{font-family:var(--fh);font-size:21px;letter-spacing:2px;color:var(--ac);white-space:nowrap;flex-shrink:0}
-.logo em{color:var(--tx);font-style:normal}
+.logo{display:flex;align-items:center;flex-shrink:0}
+.brand-img{height:36px;width:auto;object-fit:contain;/* Si el logo tiene fondo blanco, quita este comentario: filter:invert(1); */}
 .hnav{display:flex;gap:2px;margin-left:16px}
 .hnav a{font-size:13px;color:var(--mu);padding:5px 11px;border-radius:18px;transition:.15s;font-weight:500;white-space:nowrap}
 .hnav a:hover{color:var(--tx)}.hnav a.on{color:var(--ac)}
@@ -52,7 +52,7 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 .spill{background:none;border:none;color:var(--mu);padding:12px 14px;font-size:13px;font-weight:500;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap}
 .spill:hover{color:var(--tx)}.spill.on{color:var(--ac);border-bottom-color:var(--ac)}
 
-/* HERO */
+/* HERO & CAROUSEL */
 .hero{padding:60px 24px 48px;background:radial-gradient(ellipse 100% 70% at 50% 100%,#c8a84b0f 0%,transparent 65%);text-align:center}
 .htag{display:inline-flex;align-items:center;gap:8px;background:var(--acd);border:1px solid var(--ac);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;color:var(--ac);letter-spacing:1.5px;margin-bottom:18px;text-transform:uppercase}
 .hdot{width:6px;height:6px;background:var(--gr);border-radius:50%;animation:pulse 2s infinite}
@@ -64,8 +64,13 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 .hzone strong{color:var(--ac)}
 .hnote{margin-top:18px;font-size:12px;color:var(--mu);max-width:540px;margin-left:auto;margin-right:auto}
 
+.carousel-wrap{width:100%;overflow:hidden;background:#0a0a0a;padding:24px 0;border-top:1px solid var(--br);border-bottom:1px solid var(--br);margin-bottom:24px}
+.carousel-track{display:flex;width:max-content;animation:scroll 35s linear infinite;gap:18px;padding:0 9px}
+.carousel-track img{height:140px;width:140px;object-fit:contain;background:var(--sf);border:1px solid var(--br);border-radius:8px;padding:8px}
+@keyframes scroll{to{transform:translateX(calc(-50% - 9px))}}
+
 /* NOTICE BAR */
-.nbar{background:#c8a84b0b;border-top:1px solid var(--br);border-bottom:1px solid var(--br);padding:9px 24px;text-align:center;font-size:12.5px;color:var(--tx2)}
+.nbar{background:#c8a84b0b;border-bottom:1px solid var(--br);padding:9px 24px;text-align:center;font-size:12.5px;color:var(--tx2)}
 .nbar strong{color:var(--ac)}
 
 /* FEATURE TILES */
@@ -103,21 +108,26 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
 
 /* PRODUCT CARD */
-.pcard{background:var(--card);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;transition:.2s}
+.pcard{background:var(--card);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;transition:.2s;display:flex;flex-direction:column}
 .pcard:hover{transform:translateY(-3px);border-color:var(--br2);box-shadow:0 8px 28px rgba(0,0,0,.5)}
-.pimg{aspect-ratio:4/3;background:#181818;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.pimg img{width:100%;height:100%;object-fit:cover;transition:.3s}.pcard:hover .pimg img{transform:scale(1.05)}
+.pimg{aspect-ratio:1/1;background:#181818;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px}
+.pimg img{width:100%;height:100%;object-fit:contain;transition:.3s}.pcard:hover .pimg img{transform:scale(1.05)}
 .pph{display:flex;flex-direction:column;align-items:center;gap:7px;opacity:.3}
 .pph svg{width:40px;height:40px;stroke:var(--ac)}.pph span{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
-.pbody{padding:13px}
+.pbody{padding:13px;display:flex;flex-direction:column;flex-grow:1}
 .psku{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--ac);margin-bottom:2px;text-transform:uppercase}
 .pmto{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gr);background:#4caf7a12;border:1px solid #4caf7a2a;border-radius:9px;padding:1px 7px;margin-bottom:5px;text-transform:uppercase}
 .pname{font-size:13px;color:var(--tx);line-height:1.4;margin-bottom:11px;min-height:36px}
-.pprice{border-top:1px solid var(--br);padding-top:9px;display:flex;align-items:baseline;justify-content:space-between}
+.pprice{border-top:1px solid var(--br);padding-top:9px;display:flex;align-items:baseline;justify-content:space-between;margin-top:auto}
 .plabel{font-size:10px;color:var(--mu);letter-spacing:.5px}
 .pval{font-family:var(--fh);font-size:23px;color:var(--ac);letter-spacing:.5px}
 .pcur{font-size:12px;color:var(--mu);font-weight:700;margin-right:3px}
 .pnp{font-size:11px;color:var(--mu);font-style:italic}
+
+/* WhatsApp CTA Product */
+.pbtn-wa{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;background:var(--wa);color:#fff;padding:9px;border-radius:6px;font-weight:600;font-size:12px;margin-top:14px;transition:.2s}
+.pbtn-wa:hover{background:var(--wa-hover)}
+.pbtn-wa svg{width:16px;height:16px;fill:currentColor}
 
 /* INFO / ABOUT */
 .ipage{max-width:880px;margin:0 auto;padding:52px 24px}
@@ -128,9 +138,10 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 .ibody strong{color:var(--tx)}
 .isep{height:1px;background:var(--br);margin:32px 0}
 
-/* Social */
+/* Social Icons Standard */
 .socrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .socbtn{display:flex;align-items:center;gap:7px;background:var(--sf);border:1px solid var(--br2);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:500;color:var(--tx2);transition:.15s}
+.socbtn svg{width:16px;height:16px;fill:currentColor}
 .socbtn:hover{border-color:var(--ac);color:var(--ac)}
 
 /* Timeline */
@@ -148,7 +159,8 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 /* Contact */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:24px}
 .ccard{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:18px;display:flex;align-items:center;gap:12px;transition:.15s}
-.ccard:hover{border-color:var(--ac)}.cicon{width:38px;height:38px;border-radius:8px;background:var(--acd);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ccard:hover{border-color:var(--ac)}.cicon{width:38px;height:38px;border-radius:8px;background:var(--acd);color:var(--ac);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cicon svg{width:20px;height:20px;fill:currentColor}
 .clbl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}.cval{font-size:13.5px;font-weight:500}
 
 /* Coverage */
@@ -171,7 +183,7 @@ header{position:sticky;top:0;z-index:300;background:#0d0d0df2;backdrop-filter:bl
 /* Footer */
 footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-align:center}
 .fi{max-width:1340px;margin:0 auto}
-.flogo{font-family:var(--fh);font-size:28px;letter-spacing:3px;color:var(--ac);margin-bottom:4px}
+.flogo{display:flex;justify-content:center;margin-bottom:12px}
 .fsub{color:var(--mu);font-size:12px;margin-bottom:18px}
 .flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:20px}
 .flinks a{font-size:12px;color:var(--mu);transition:.12s}.flinks a:hover{color:var(--ac)}
@@ -193,7 +205,9 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
 
 <header>
 <div class="hdr">
-  <a class="logo" href="#" onclick="goSec('home');return false">BRUMS <em>ART</em> DRUMS</a>
+  <a class="logo" href="#" onclick="goSec('home');return false">
+    <img src="logo.png" alt="Brums Art Drums" class="brand-img">
+  </a>
   <nav class="hnav">
     <a href="#" class="on" id="nv-home" onclick="goSec('home');return false">Inicio</a>
     <a href="#" id="nv-catalog" onclick="goSec('catalog');return false">Catálogo</a>
@@ -225,7 +239,6 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
 
 <div class="snav" id="snav"><div class="snav-i" id="snavi"></div></div>
 
-<!-- HOME -->
 <div class="psec on" id="sec-home">
   <div class="hero">
     <div class="htag"><div class="hdot"></div><span id="ht"></span></div>
@@ -234,12 +247,16 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
     <div class="hzone" id="hzone" style="display:inline-flex"></div>
     <p class="hnote" id="hnote"></p>
   </div>
+  
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="ctrack"></div>
+  </div>
+
   <div class="nbar" id="nbar"></div>
   <div class="ftiles" id="ftiles"></div>
   <div class="cta-wrap"><button class="cta" id="cta" onclick="goSec('catalog')"></button></div>
 </div>
 
-<!-- CATALOG -->
 <div class="psec" id="sec-catalog">
   <div class="cat-layout">
     <aside class="sidebar" id="sidebar"></aside>
@@ -253,7 +270,6 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
   </div>
 </div>
 
-<!-- ABOUT -->
 <div class="psec" id="sec-about">
   <div class="ipage">
     <div class="ih" id="ab-h"></div>
@@ -263,16 +279,30 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
     <p class="ibody" style="margin-top:14px" id="ab-p3"></p>
     <div class="isep"></div>
     <div class="socrow">
-      <a class="socbtn" href="https://wa.me/5492342408256" target="_blank">📱 WhatsApp</a>
-      <a class="socbtn" href="https://instagram.com/brums_art_drums" target="_blank">📷 Instagram</a>
-      <a class="socbtn" href="https://www.facebook.com/brumsartdrums" target="_blank">👥 Facebook</a>
-      <a class="socbtn" href="https://youtube.com/@brumsartdrums" target="_blank">▶️ YouTube</a>
-      <a class="socbtn" href="https://ar.pinterest.com/brumsartdrums/" target="_blank">📌 Pinterest</a>
+      <a class="socbtn" href="https://wa.me/5492342408256" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+      <a class="socbtn" href="https://instagram.com/brums_art_drums" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a class="socbtn" href="https://www.facebook.com/brumsartdrums" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        Facebook
+      </a>
+      <a class="socbtn" href="https://youtube.com/@brumsartdrums" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube
+      </a>
+      <a class="socbtn" href="https://ar.pinterest.com/brumsartdrums/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.168 0 7.41 2.967 7.41 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.367 18.624 0 12.017 0z"/></svg>
+        Pinterest
+      </a>
     </div>
   </div>
 </div>
 
-<!-- TRAYECTORIA -->
 <div class="psec" id="sec-track">
   <div class="ipage">
     <div class="ih" id="tr-h"></div>
@@ -283,36 +313,34 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
   </div>
 </div>
 
-<!-- AMIGOS -->
 <div class="psec" id="sec-friends">
   <div class="ipage">
     <div class="ih">AMIGOS <span style="color:var(--ac)">BRUMS</span></div>
     <p class="ilead" id="fr-lead"></p>
     <div style="background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:18px;margin-top:4px">
       <p style="font-size:13px;color:var(--tx2);margin-bottom:12px" id="fr-spot"></p>
-      <iframe style="border-radius:10px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe style="border-radius:10px" src="https://open.spotify.com/playlist/2CF3XXHgzh4ZQgf52mGJY3?si=ChPJgnpBRKaR9E25o95ssQ&pi=7mj9nkSWTe2eR" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
     <div class="fg" id="fg"></div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="psec" id="sec-contact">
   <div class="ipage">
     <div class="ih" id="ct-h"></div>
     <p class="ilead" id="ct-lead"></p>
     <div class="cgrid">
       <a class="ccard" href="https://wa.me/5492342408256" target="_blank">
-        <div class="cicon">📱</div><div><div class="clbl">WhatsApp</div><div class="cval">+54 9 2342 408256</div></div>
+        <div class="cicon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div><div><div class="clbl">WhatsApp</div><div class="cval">+54 9 2342 408256</div></div>
       </a>
       <a class="ccard" href="mailto:brumsartdrums@gmail.com">
-        <div class="cicon">✉️</div><div><div class="clbl">Email</div><div class="cval">brumsartdrums@gmail.com</div></div>
+        <div class="cicon"><svg viewBox="0 0 24 24"><path d="M3 4C1.343 4 0 5.343 0 7v10c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V7c0-1.657-1.343-3-3-3H3zm0 2h18c.552 0 1 .448 1 1v.795l-9.61 5.338a.998.998 0 0 1-.78 0L2 7.795V7c0-.552.448-1 1-1zm-1 3.551l8.52 4.733a3 3 0 0 0 2.96 0L22 9.551V17c0 .552-.448 1-1 1H3c-.552 0-1-.448-1-1V9.551z"/></svg></div><div><div class="clbl">Email</div><div class="cval">brumsartdrums@gmail.com</div></div>
       </a>
       <a class="ccard" href="https://instagram.com/brums_art_drums" target="_blank">
-        <div class="cicon">📷</div><div><div class="clbl">Instagram</div><div class="cval">@brums_art_drums</div></div>
+        <div class="cicon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div><div class="clbl">Instagram</div><div class="cval">@brums_art_drums</div></div>
       </a>
       <div class="ccard">
-        <div class="cicon">📍</div><div><div class="clbl" id="ct-loc"></div><div class="cval">Bragado, Buenos Aires, Argentina</div></div>
+        <div class="cicon" style="font-size:20px; font-weight:bold; font-family:sans-serif; text-align:center;">📍</div><div><div class="clbl" id="ct-loc"></div><div class="cval">Bragado, Buenos Aires, Argentina</div></div>
       </div>
     </div>
     <div class="isep"></div>
@@ -324,7 +352,9 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
 
 <footer>
   <div class="fi">
-    <div class="flogo">BRUMS ART DRUMS</div>
+    <div class="flogo">
+      <img src="logo.png" alt="Brums Art Drums" class="brand-img">
+    </div>
     <div class="fsub">Bragado, Buenos Aires, Argentina</div>
     <div class="flinks">
       <a href="#" onclick="goSec('home');return false" id="fl-home">Inicio</a>
@@ -342,15 +372,19 @@ footer{background:#0a0a0a;border-top:1px solid var(--br);padding:36px 24px;text-
 <script>
 // ──────────── DATA ────────────
 const STRUCTURE=[{"id": "kits", "es": "Kit de Batería", "en": "Drum Kits", "subs": [{"id": "kit_flat_s", "es": "Kit Flat", "en": "Kit Flat", "groups": [1, 2, 3, 4, 5, 6, 7, 8], "products": [{"sku": null, "desc_es": "Kit Flat 22-14-10-12-14", "desc_en": "Kit Flat 22-14-10-12-14", "bl": 1, "group": 1, "img": "KIT-22-14.webp", "zone_a": 1378, "zone_b_eur": 1285, "zone_c": 1427, "zone_d": 1470}, {"sku": null, "desc_es": "Kit Flat 20-13-10-13", "desc_en": "Kit Flat 20-13-10-13", "bl": 1, "group": 1, "img": "KIT-20-13.webp", "zone_a": 1129, "zone_b_eur": 1046, "zone_c": 1162, "zone_d": 1197}, {"sku": null, "desc_es": "Kit Flat 20-12-10-13", "desc_en": "Kit Flat 20-12-10-13", "bl": 2, "group": 2, "img": "KIT-20-12.png", "zone_a": 1217, "zone_b_eur": 1125, "zone_c": 1250, "zone_d": 1285}, {"sku": null, "desc_es": "Kit Flat 22-13-10-12-14 S", "desc_en": "Kit Flat 22-13-10-12-14 S", "bl": 3, "group": 3, "img": "KIT-22-13S.jpeg", "zone_a": 1525, "zone_b_eur": 1417, "zone_c": 1574, "zone_d": 1616}, {"sku": null, "desc_es": "Kit Flat 18-12-10-13", "desc_en": "Kit Flat 18-12-10-13", "bl": 4, "group": 4, "img": "KIT-18-12.png", "zone_a": 1103, "zone_b_eur": 1018, "zone_c": 1131, "zone_d": 1157}, {"sku": null, "desc_es": "Kit Flat 18-10", "desc_en": "Kit Flat 18-10", "bl": 5, "group": 5, "img": "KIT-18-10.png", "zone_a": 615, "zone_b_eur": 579, "zone_c": 643, "zone_d": 670}, {"sku": null, "desc_es": "Kit Flat 20-13-10-13", "desc_en": "Kit Flat 20-13-10-13", "bl": 6, "group": 6, "img": "KIT-20-13T.png", "zone_a": 1312, "zone_b_eur": 1211, "zone_c": 1345, "zone_d": 1380}, {"sku": null, "desc_es": "Kit Flat 18-10-13", "desc_en": "Kit Flat 18-10-13", "bl": 7, "group": 7, "img": "KIT-18-10-13.webp", "zone_a": 1175, "zone_b_eur": 1083, "zone_c": 1203, "zone_d": 1230}, {"sku": null, "desc_es": "Kit 20-10-12-14", "desc_en": "Kit 20-10-12-14", "bl": 8, "group": 8, "img": "KIT-20T.webp", "zone_a": 1316, "zone_b_eur": 1214, "zone_c": 1349, "zone_d": 1384}]}, {"id": "kit_doble", "es": "Kit Doble Tensión TG", "en": "Double-Head TG Kit", "groups": [9], "products": [{"sku": null, "desc_es": "Kit Doble Tensión - 18-14-10-14", "desc_en": "Kit Doble Tensión - 18-14-10-14", "bl": 9, "group": 9, "img": "KIT-DT18.jpeg", "zone_a": 1690, "zone_b_eur": 1582, "zone_c": 1758, "zone_d": 1815}]}, {"id": "kit_qbombo", "es": "Qbombo", "en": "Qbombo", "groups": [10], "products": [{"sku": "KQ8", "desc_es": "Qbombo, Redo Ringo  12\", Tom 10 y 13\", 2 soportes de platos", "desc_en": "Qbombo, Snare Ringo  12\", Tom 10 y 13\", 2 soportes de platos", "bl": 10, "group": 10, "img": "KQ8.png", "zone_a": 1568, "zone_b_eur": 1441, "zone_c": 1601, "zone_d": 1636}]}, {"id": "kit_folk", "es": "Kit Folclórico Deluxe", "en": "Folk Kit Deluxe", "groups": [11], "products": [{"sku": "KFD18-12", "desc_es": "Bombo Flat 18\", Redo Ringo 12\", accesorios", "desc_en": "Kick Flat 18\", Snare Ringo 12\", accessories", "bl": 11, "group": 11, "img": "KFD18-12.webp", "zone_a": 723, "zone_b_eur": 676, "zone_c": 751, "zone_d": 777}]}]}, {"id": "bombos_leg", "es": "Bombos Legüeros Compactos", "en": "Compact Legüero Bass Drums", "subs": [{"id": "bl_bracket", "es": "Bombo Legüero Flat con Bracket", "en": "Flat Legüero w/ Bracket", "groups": [21], "products": [{"sku": "BLCB-14", "desc_es": "Bombo Legüero flat con bracket 14\"", "desc_en": "Legüero flat with bracket 14\"", "bl": 21, "group": 21, "img": "BLCB-14.webp", "zone_a": 273, "zone_b_eur": 259, "zone_c": 287, "zone_d": 299}, {"sku": "BLCB-16", "desc_es": "Bombo Legüero flat con bracket 16\"", "desc_en": "Legüero flat with bracket 16\"", "bl": "x", "group": 21, "img": "BLCB-16.png", "zone_a": 287, "zone_b_eur": 271, "zone_c": 301, "zone_d": 313}]}, {"id": "bl_patas", "es": "Bombo Legüero Flat con Patas", "en": "Flat Legüero w/ Legs", "groups": [22], "products": [{"sku": "BLCP-14", "desc_es": "Bombo Legüero flat con patas 14\"", "desc_en": "Legüero flat with legs 14\"", "bl": 22, "group": 22, "img": "BLCP-14.webp", "zone_a": 357, "zone_b_eur": 341, "zone_c": 379, "zone_d": 390}, {"sku": "BLCP-16", "desc_es": "Bombo Legüero flat con patas 16\"", "desc_en": "Legüero flat with legs 16\"", "bl": "x", "group": 22, "img": "BLCP-14.webp", "zone_a": 370, "zone_b_eur": 353, "zone_c": 392, "zone_d": 403}]}, {"id": "tom_leg", "es": "Tom Legüero Flat TG", "en": "Flat Legüero Tom TG", "groups": [23], "products": [{"sku": "T1TGC-10", "desc_es": "Tom legüero flat TG 10\"", "desc_en": "Tom legüero flat TG 10\"", "bl": 23, "group": 23, "img": "T1TGC-10.webp", "zone_a": 213, "zone_b_eur": 205, "zone_c": 227, "zone_d": 240}, {"sku": "T1TGC-12", "desc_es": "Tom legüero flat TG 12\"", "desc_en": "Tom legüero flat TG 12\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 222, "zone_b_eur": 213, "zone_c": 236, "zone_d": 249}, {"sku": "T1TGC-13", "desc_es": "Tom legüero flat TG 13\"", "desc_en": "Tom legüero flat TG 13\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 229, "zone_b_eur": 219, "zone_c": 243, "zone_d": 255}, {"sku": "T1TGC-14", "desc_es": "Tom legüero flat TG 14\"", "desc_en": "Tom legüero flat TG 14\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 233, "zone_b_eur": 223, "zone_c": 247, "zone_d": 260}, {"sku": "T1TGC-16", "desc_es": "Tom legüero flat TG 16\"", "desc_en": "Tom legüero flat TG 16\"", "bl": "x", "group": 23, "img": "T1TGC-10.webp", "zone_a": 242, "zone_b_eur": 231, "zone_c": 256, "zone_d": 268}]}]}, {"id": "redoblantes", "es": "Redoblantes", "en": "Snare Drums", "subs": [{"id": "r_flat", "es": "Redoblante Flat", "en": "Flat Snare", "groups": [13], "products": [{"sku": "R1MB-10", "desc_es": "Redoblante Flat con Bracket 10\"", "desc_en": "Snare Flat whit bracket  10\"", "bl": 13, "group": 13, "img": "R1MB-10.webp", "zone_a": 251, "zone_b_eur": 240, "zone_c": 265, "zone_d": 278}, {"sku": "R1MB-12", "desc_es": "Redoblante Flat con Bracket 12\"", "desc_en": "Snare Flat whit bracket 12\"", "bl": "x", "group": 13, "img": "R1MB-10.webp", "zone_a": 265, "zone_b_eur": 252, "zone_c": 279, "zone_d": 292}, {"sku": "R1MB-13", "desc_es": "Redoblante Flat con Bracket 13\"", "desc_en": "Snare Flat whit bracket 13\"", "bl": "x", "group": 13, "img": "R1MB-10.webp", "zone_a": 281, "zone_b_eur": 267, "zone_c": 295, "zone_d": 308}]}, {"id": "r_ringo", "es": "Redoblante Ringo", "en": "Snare Ringo", "groups": [14], "products": [{"sku": "R20MB-10", "desc_es": "Redoblante Ringo con bracket 10\"", "desc_en": "Snare Ringo whit bracket 10\"", "bl": 14, "group": 14, "img": "R20MB-10.png", "zone_a": 269, "zone_b_eur": 255, "zone_c": 283, "zone_d": 296}, {"sku": "R20MB-12", "desc_es": "Redoblante Ringo con bracket 12\"", "desc_en": "Snare Ringo whit bracket  12\"", "bl": "x", "group": 14, "img": "R20MB-10.png", "zone_a": 287, "zone_b_eur": 272, "zone_c": 301, "zone_d": 314}, {"sku": "R20MB-13", "desc_es": "Redoblante Ringo con bracket 13\"", "desc_en": "Snare Ringo whit bracket  13\"", "bl": "x", "group": 14, "img": "R20MB-10.png", "zone_a": 307, "zone_b_eur": 290, "zone_c": 321, "zone_d": 334}]}, {"id": "r_katari", "es": "Redoblante Katari", "en": "Katari Snare", "groups": [15], "products": [{"sku": "R20B-13", "desc_es": "Redoblante Katari 13\"", "desc_en": "Snare Katari 13\"", "bl": 15, "group": 15, "img": "R20B-13.webp", "zone_a": 345, "zone_b_eur": 324, "zone_c": 359, "zone_d": 372}, {"sku": "R20B-14", "desc_es": "Redoblante Katari 14\"", "desc_en": "Snare Katari 14\"", "bl": "x", "group": 15, "img": "R20B-13.webp", "zone_a": 363, "zone_b_eur": 340, "zone_c": 377, "zone_d": 389}]}, {"id": "r_tg", "es": "Redoblante TG", "en": "Snare TG", "groups": [16], "products": [{"sku": "R2TG-13", "desc_es": "Redoblante TG 13\"", "desc_en": "Redoblante TG 13\"", "bl": 16, "group": 16, "img": "R2TG-13.png", "zone_a": 394, "zone_b_eur": 374, "zone_c": 415, "zone_d": 426}, {"sku": "R2TG-14", "desc_es": "Redoblante TG 14\"", "desc_en": "Redoblante TG 14\"", "bl": "x", "group": 16, "img": "R2TG-14.webp", "zone_a": 407, "zone_b_eur": 386, "zone_c": 429, "zone_d": 439}]}, {"id": "r_mano", "es": "Tambor de Mano", "en": "Hand Drum", "groups": [17], "products": [{"sku": "RTM-10", "desc_es": "Tambor de mano, con 2 bordonas", "desc_en": "Hand drum with 2 snare wire", "bl": 17, "group": 17, "img": "RTM-10.webp", "zone_a": 265, "zone_b_eur": 252, "zone_c": 279, "zone_d": 292}]}]}, {"id": "bombos", "es": "Bombos", "en": "Bass Drums", "subs": [{"id": "b_flat", "es": "Bombos Flat", "en": "Flat Bass Drums", "groups": [12], "products": [{"sku": "B1P-18", "desc_es": "Bombo Flat (simple parche) 18\"", "desc_en": "Kick Flat 18\"", "bl": 12, "group": 12, "img": "B1P-18.png", "zone_a": 348, "zone_b_eur": 333, "zone_c": 370, "zone_d": 381}, {"sku": "B1P-20", "desc_es": "Bombo Flat (simple parche) 20\"", "desc_en": "Kick Flat 20\"", "bl": "x", "group": 12, "img": "B1P-20.jpg", "zone_a": 367, "zone_b_eur": 350, "zone_c": 389, "zone_d": 400}, {"sku": "B1P-22", "desc_es": "Bombo Flat (simple parche) 22\"", "desc_en": "Kick Flat 22\"", "bl": "x", "group": 12, "img": "B1P-22.png", "zone_a": 381, "zone_b_eur": 362, "zone_c": 402, "zone_d": 413}]}]}, {"id": "toms", "es": "Toms", "en": "Toms", "subs": [{"id": "t_flat", "es": "Tom Flat", "en": "Flat Tom", "groups": [18], "products": [{"sku": "T1B-10", "desc_es": "Tom Flat simple parche con bracket 10\"", "desc_en": "Tom Flat with bracket 10\"", "bl": 18, "group": 18, "img": "T1B-10.png", "zone_a": 249, "zone_b_eur": 238, "zone_c": 263, "zone_d": 276}, {"sku": "T1B-12", "desc_es": "Tom Flat simple parche con bracket 12\"", "desc_en": "Tom Flat with bracket 12\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 262, "zone_b_eur": 249, "zone_c": 276, "zone_d": 288}, {"sku": "T1B-13", "desc_es": "Tom Flat simple parche con bracket 13\"", "desc_en": "Tom Flat with bracket 13\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 272, "zone_b_eur": 258, "zone_c": 286, "zone_d": 299}, {"sku": "T1B-14", "desc_es": "Tom Flat simple parche con bracket 14\"", "desc_en": "Tom Flat with bracket 14\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 274, "zone_b_eur": 260, "zone_c": 288, "zone_d": 300}, {"sku": "T1B-16", "desc_es": "Tom Flat simple parche con bracket 16\"", "desc_en": "Tom Flat with bracket 16\"", "bl": "x", "group": 18, "img": "T1B-10.png", "zone_a": 285, "zone_b_eur": 270, "zone_c": 299, "zone_d": 312}]}, {"id": "t_tg", "es": "Tom Flat TG", "en": "Flat Tom TG", "groups": [19], "products": [{"sku": "T1TG-10", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 10\"", "desc_en": "Tom Flat with lug, and bracket 10\"", "bl": 19, "group": 19, "img": "T1TG-10.png", "zone_a": 168, "zone_b_eur": 160, "zone_c": 178, "zone_d": 184}, {"sku": "T1TG-12", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 12\"", "desc_en": "Tom Flat with lug, and bracket 12\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 199, "zone_b_eur": 192, "zone_c": 213, "zone_d": 226}, {"sku": "T1TG-13", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 13\"", "desc_en": "Tom Flat with lug, and bracket 13\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 207, "zone_b_eur": 199, "zone_c": 221, "zone_d": 233}, {"sku": "T1TG-14", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 14\"", "desc_en": "Tom Flat with lug, and bracket14\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 215, "zone_b_eur": 207, "zone_c": 229, "zone_d": 242}, {"sku": "T1TG-16", "desc_es": "Tom Flat simple parche con torre, grampa y bracket 16\"", "desc_en": "Tom Flat with lug, and bracket 16\"", "bl": "x", "group": 19, "img": "T1TG-10.png", "zone_a": 227, "zone_b_eur": 217, "zone_c": 241, "zone_d": 253}]}, {"id": "t_doble", "es": "Tom Doble Parche TG", "en": "Double-Head TG Tom", "groups": [20], "products": [{"sku": "T2TGB-10", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 10\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 10\"", "bl": 20, "group": 20, "img": "T2TGB-10.jpg", "zone_a": 288, "zone_b_eur": 272, "zone_c": 302, "zone_d": 314}, {"sku": "T2TGB-12", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 12\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 12\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 303, "zone_b_eur": 286, "zone_c": 317, "zone_d": 330}, {"sku": "T2TGB-13", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 13\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 13\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 328, "zone_b_eur": 315, "zone_c": 350, "zone_d": 361}, {"sku": "T2TGB-14", "desc_es": "Tom Flat doble parche con torre, grampa y bracket 14\"", "desc_en": "Tom Flat doble parche con torre, grampa y bracket 14\"", "bl": "x", "group": 20, "img": "T2TGB-10.jpg", "zone_a": 341, "zone_b_eur": 326, "zone_c": 362, "zone_d": 373}]}]}, {"id": "accesorios", "es": "Accesorios", "en": "Accessories", "subs": [{"id": "acc_mont", "es": "Accesorios de Montaje", "en": "Mounting Accessories", "groups": [25], "products": [{"sku": "CLR", "desc_es": "Clamp Recto", "desc_en": "Clamp Recto", "bl": "x", "group": 25, "img": "CLR.png", "zone_a": 68, "zone_b_eur": 70, "zone_c": 78, "zone_d": 84}, {"sku": "CTH", "desc_es": "Clamp Tom holder", "desc_en": "Clamp Tom holder", "bl": "x", "group": 25, "img": "CTH.webp", "zone_a": 76, "zone_b_eur": 77, "zone_c": 85, "zone_d": 92}, {"sku": "SR", "desc_es": "Soporte tambor/tom", "desc_en": "Cymbal or Snare Stand", "bl": "x", "group": 25, "img": "SR.webp", "zone_a": 106, "zone_b_eur": 109, "zone_c": 120, "zone_d": 133}]}, {"id": "acc_cuero", "es": "Cueros y Aros", "en": "Heads & Rims", "groups": [24], "products": [{"sku": "KCSA", "desc_es": "Kit cuero y semiaro", "desc_en": "Kit cuero y semiaro", "bl": 24, "group": 24, "img": "KCSA.png", "zone_a": 89, "zone_b_eur": 89, "zone_c": 99, "zone_d": 105}]}]}];
-const COUNTRY_ZONE={"Anguilla": "A", "Antigua & Barbuda": "A", "Aruba": "A", "Bahama": "A", "Barbados": "A", "Belize": "A", "Bermuda": "A", "Bolivia": "A", "Bonaire Sint Eustatius and Saba": "A", "Brazil": "A", "British Virgin Islands": "A", "Canadá": "A", "Cayman Islands": "A", "Chile": "A", "Colombia": "A", "Costa Rica": "A", "Curazao": "A", "Dominica": "A", "Dominican Republic": "A", "Ecuador": "A", "El Salvador": "A", "French Guiana": "A", "Grenada": "A", "Guadeloupe": "A", "Guatemala": "A", "Guyana": "A", "Haiti": "A", "Honduras": "A", "Jamaica": "A", "Martinique": "A", "Mexico": "A", "Monserrat": "A", "Netherlands Antilles": "A", "Nicaragua": "A", "Panama": "A", "Paraguay": "A", "Peru": "A", "Puerto Rico - Arguadilla - BQN": "A", "Puerto Rico - Arecibo - ARE": "A", "Puerto Rico - Carolina (FAJ) - FAJ": "A", "Puerto Rico - Carolina (NRR) - NRR": "A", "Puerto Rico - Guaynabo - SIG": "A", "Puerto Rico - Ponce - PSE": "A", "Puerto Rico - San Juan - SJU": "A", "Saint Lucia": "A", "St. Kitts and Nevis": "A", "St. Maarten": "A", "St. Martin": "A", "St. Vincent & the Grenadines": "A", "Suriname": "A", "Trinidad & Tobago": "A", "Turks & Caicos Islands": "A", "U.S. Virgin Islands": "A", "Uruguay": "A", "Venezuela": "A", "Andorra": "B", "Austria": "B", "Belgium": "B", "Bulgaria": "B", "Czech Republic": "B", "Denmark": "B", "Estonia": "B", "Finland": "B", "France": "B", "Germany": "B", "Gibraltar": "B", "Greece": "B", "Hungary": "B", "Iceland": "B", "Ireland": "B", "Italy": "B", "Latvia": "B", "Liechtenstein": "B", "Lithuania": "B", "Luxembourg": "B", "Malta": "B", "Monaco": "B", "Netherlands": "B", "Norway": "B", "Poland": "B", "Portugal": "B", "Romania": "B", "Russian Federation": "B", "Slovakia": "B", "Slovenia": "B", "South Africa": "B", "Spain": "B", "Sweden": "B", "Switzerland": "B", "United Kingdom (Great Britain)": "B", "Vatican City": "B", "Australia": "C", "China": "C", "Guam": "C", "Hong Kong": "C", "Indonesia": "C", "Japan": "C", "Macau": "C", "Malaysia": "C", "Birmania": "C", "New Zealand": "C", "Phillipines": "C", "Singapore": "C", "South Korea": "C", "Taiwan": "C", "Thailand": "C", "Vietnam": "C", "Afghanistan": "D", "Albania": "D", "Algeria": "D", "American Samoa": "D", "Angola": "D", "Armenia": "D", "Azerbaijan": "D", "Bahrain": "D", "Bangladesh": "D", "Belarus": "D", "Benin": "D", "Bhutan": "D", "Bosnia-Herzegovina": "D", "Botswana": "D", "Brunei": "D", "Burkina Faso": "D", "Burundi": "D", "Cambodia": "D", "Cameroon": "D", "Cape Verde": "D", "Central African Republic": "D", "Chad": "D", "Cook Islands": "D", "Côte D'ivoire (Ivory Coast)": "D", "Croatia": "D", "Cyprus": "D", "Democratic Republic of the Congo": "D", "Djibouti": "D", "East Timor": "D", "Egypt": "D", "Equatorial Guinea": "D", "Eritrea": "D", "Ethiopia": "D", "Islas Feroe": "D", "Fiji": "D", "French Polynesia": "D", "Gabon": "D", "Gambia": "D", "Ghana": "D", "Greenland": "D", "Guinea": "D", "Guinea-Bissau": "D", "India": "D", "Iran": "D", "Iraq": "D", "Israel": "D", "Jordan": "D", "Kazakhstan": "D", "Kenya": "D", "Kiribati": "D", "Kuwait": "D", "Kyrgyzstan": "D", "Laos": "D", "Lebanon": "D", "Lesotho": "D", "Liberia": "D", "Macedonia": "D", "Madagascar": "D", "Malawi": "D", "Maldives": "D", "Mali": "D", "Marshall Islands": "D", "Mauritania": "D", "Mauritius": "D", "Micronesia": "D", "Mongolia": "D", "Montenegro": "D", "Morocco": "D", "Mozambique": "D", "Namibia": "D", "Nauru": "D", "Nepal": "D", "New Caledonia": "D", "Niger": "D", "Nigeria": "D", "Niue": "D", "Northern Mariana Islands": "D", "Oman": "D", "Pakistan": "D", "Palau": "D", "Territorio Palestino": "D", "Papua New Guinea": "D", "Qatar": "D", "Réunion": "D", "Rwanda": "D", "Samoa": "D", "Saudi Arabia": "D", "Senegal": "D", "Serbia": "D", "Seychelles": "D", "Sierra Leone": "D", "Islas Salomón": "D", "Sri Lanka": "D", "Sudan": "D", "Swaziland": "D", "Syrian Arab Republic": "D", "Togo": "D", "Tonga": "D", "Tunisia": "D", "Turquía": "D", "Turkmenistan": "D", "Tuvalu": "D", "Uganda": "D", "Ukraine": "D", "Emiratos Árabes Unidos": "D", "United Republic of Tanzania": "D", "Uzbekistan": "D", "Vanuatu": "D", "Wallis & Futuna": "D", "Yemen": "D", "Zambia": "D", "Zimbabwe": "D"};
-const ALL_COUNTRIES=["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahama", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Birmania", "Bolivia", "Bonaire Sint Eustatius and Saba", "Bosnia-Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canadá", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Cook Islands", "Costa Rica", "Croatia", "Curazao", "Cyprus", "Czech Republic", "Côte D'ivoire (Ivory Coast)", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Emiratos Árabes Unidos", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Islas Feroe", "Islas Salomón", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Monserrat", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Phillipines", "Poland", "Portugal", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Qatar", "Romania", "Russian Federation", "Rwanda", "Réunion", "Saint Lucia", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Territorio Palestino", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkmenistan", "Turks & Caicos Islands", "Turquía", "Tuvalu", "U.S. Virgin Islands", "Uganda", "Ukraine", "United Kingdom (Great Britain)", "United Republic of Tanzania", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"];
-const ZONES={A:["Anguilla", "Antigua & Barbuda", "Aruba", "Bahama", "Barbados", "Belize", "Bermuda", "Bolivia", "Bonaire Sint Eustatius and Saba", "Brazil", "British Virgin Islands", "Canadá", "Cayman Islands", "Chile", "Colombia", "Costa Rica", "Curazao", "Dominica", "Dominican Republic", "Ecuador", "El Salvador", "French Guiana", "Grenada", "Guadeloupe", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Martinique", "Mexico", "Monserrat", "Netherlands Antilles", "Nicaragua", "Panama", "Paraguay", "Peru", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Saint Lucia", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Suriname", "Trinidad & Tobago", "Turks & Caicos Islands", "U.S. Virgin Islands", "Uruguay", "Venezuela"],B:["Andorra", "Austria", "Belgium", "Bulgaria", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Gibraltar", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Monaco", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Russian Federation", "Slovakia", "Slovenia", "South Africa", "Spain", "Sweden", "Switzerland", "United Kingdom (Great Britain)", "Vatican City"],C:["Australia", "China", "Guam", "Hong Kong", "Indonesia", "Japan", "Macau", "Malaysia", "Birmania", "New Zealand", "Phillipines", "Singapore", "South Korea", "Taiwan", "Thailand", "Vietnam"],D:["Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Belarus", "Benin", "Bhutan", "Bosnia-Herzegovina", "Botswana", "Brunei", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Cook Islands", "Côte D'ivoire (Ivory Coast)", "Croatia", "Cyprus", "Democratic Republic of the Congo", "Djibouti", "East Timor", "Egypt", "Equatorial Guinea", "Eritrea", "Ethiopia", "Islas Feroe", "Fiji", "French Polynesia", "Gabon", "Gambia", "Ghana", "Greenland", "Guinea", "Guinea-Bissau", "India", "Iran", "Iraq", "Israel", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Lesotho", "Liberia", "Macedonia", "Madagascar", "Malawi", "Maldives", "Mali", "Marshall Islands", "Mauritania", "Mauritius", "Micronesia", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "New Caledonia", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Oman", "Pakistan", "Palau", "Territorio Palestino", "Papua New Guinea", "Qatar", "Réunion", "Rwanda", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Islas Salomón", "Sri Lanka", "Sudan", "Swaziland", "Syrian Arab Republic", "Togo", "Tonga", "Tunisia", "Turquía", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "Emiratos Árabes Unidos", "United Republic of Tanzania", "Uzbekistan", "Vanuatu", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"]};
+const COUNTRY_ZONE={"United States": "A", "Anguilla": "A", "Antigua & Barbuda": "A", "Aruba": "A", "Bahama": "A", "Barbados": "A", "Belize": "A", "Bermuda": "A", "Bolivia": "A", "Bonaire Sint Eustatius and Saba": "A", "Brazil": "A", "British Virgin Islands": "A", "Canadá": "A", "Cayman Islands": "A", "Chile": "A", "Colombia": "A", "Costa Rica": "A", "Curazao": "A", "Dominica": "A", "Dominican Republic": "A", "Ecuador": "A", "El Salvador": "A", "French Guiana": "A", "Grenada": "A", "Guadeloupe": "A", "Guatemala": "A", "Guyana": "A", "Haiti": "A", "Honduras": "A", "Jamaica": "A", "Martinique": "A", "Mexico": "A", "Monserrat": "A", "Netherlands Antilles": "A", "Nicaragua": "A", "Panama": "A", "Paraguay": "A", "Peru": "A", "Puerto Rico - Arguadilla - BQN": "A", "Puerto Rico - Arecibo - ARE": "A", "Puerto Rico - Carolina (FAJ) - FAJ": "A", "Puerto Rico - Carolina (NRR) - NRR": "A", "Puerto Rico - Guaynabo - SIG": "A", "Puerto Rico - Ponce - PSE": "A", "Puerto Rico - San Juan - SJU": "A", "Saint Lucia": "A", "St. Kitts and Nevis": "A", "St. Maarten": "A", "St. Martin": "A", "St. Vincent & the Grenadines": "A", "Suriname": "A", "Trinidad & Tobago": "A", "Turks & Caicos Islands": "A", "U.S. Virgin Islands": "A", "Uruguay": "A", "Venezuela": "A", "Andorra": "B", "Austria": "B", "Belgium": "B", "Bulgaria": "B", "Czech Republic": "B", "Denmark": "B", "Estonia": "B", "Finland": "B", "France": "B", "Germany": "B", "Gibraltar": "B", "Greece": "B", "Hungary": "B", "Iceland": "B", "Ireland": "B", "Italy": "B", "Latvia": "B", "Liechtenstein": "B", "Lithuania": "B", "Luxembourg": "B", "Malta": "B", "Monaco": "B", "Netherlands": "B", "Norway": "B", "Poland": "B", "Portugal": "B", "Romania": "B", "Russian Federation": "B", "Slovakia": "B", "Slovenia": "B", "South Africa": "B", "Spain": "B", "Sweden": "B", "Switzerland": "B", "United Kingdom (Great Britain)": "B", "Vatican City": "B", "Australia": "C", "China": "C", "Guam": "C", "Hong Kong": "C", "Indonesia": "C", "Japan": "C", "Macau": "C", "Malaysia": "C", "Birmania": "C", "New Zealand": "C", "Phillipines": "C", "Singapore": "C", "South Korea": "C", "Taiwan": "C", "Thailand": "C", "Vietnam": "C", "Afghanistan": "D", "Albania": "D", "Algeria": "D", "American Samoa": "D", "Angola": "D", "Armenia": "D", "Azerbaijan": "D", "Bahrain": "D", "Bangladesh": "D", "Belarus": "D", "Benin": "D", "Bhutan": "D", "Bosnia-Herzegovina": "D", "Botswana": "D", "Brunei": "D", "Burkina Faso": "D", "Burundi": "D", "Cambodia": "D", "Cameroon": "D", "Cape Verde": "D", "Central African Republic": "D", "Chad": "D", "Cook Islands": "D", "Côte D'ivoire (Ivory Coast)": "D", "Croatia": "D", "Cyprus": "D", "Democratic Republic of the Congo": "D", "Djibouti": "D", "East Timor": "D", "Egypt": "D", "Equatorial Guinea": "D", "Eritrea": "D", "Ethiopia": "D", "Islas Feroe": "D", "Fiji": "D", "French Polynesia": "D", "Gabon": "D", "Gambia": "D", "Ghana": "D", "Greenland": "D", "Guinea": "D", "Guinea-Bissau": "D", "India": "D", "Iran": "D", "Iraq": "D", "Israel": "D", "Jordan": "D", "Kazakhstan": "D", "Kenya": "D", "Kiribati": "D", "Kuwait": "D", "Kyrgyzstan": "D", "Laos": "D", "Lebanon": "D", "Lesotho": "D", "Liberia": "D", "Macedonia": "D", "Madagascar": "D", "Malawi": "D", "Maldives": "D", "Mali": "D", "Marshall Islands": "D", "Mauritania": "D", "Mauritius": "D", "Micronesia": "D", "Mongolia": "D", "Montenegro": "D", "Morocco": "D", "Mozambique": "D", "Namibia": "D", "Nauru": "D", "Nepal": "D", "New Caledonia": "D", "Niger": "D", "Nigeria": "D", "Niue": "D", "Northern Mariana Islands": "D", "Oman": "D", "Pakistan": "D", "Palau": "D", "Territorio Palestino": "D", "Papua New Guinea": "D", "Qatar": "D", "Réunion": "D", "Rwanda": "D", "Samoa": "D", "Saudi Arabia": "D", "Senegal": "D", "Serbia": "D", "Seychelles": "D", "Sierra Leone": "D", "Islas Salomón": "D", "Sri Lanka": "D", "Sudan": "D", "Swaziland": "D", "Syrian Arab Republic": "D", "Togo": "D", "Tonga": "D", "Tunisia": "D", "Turquía": "D", "Turkmenistan": "D", "Tuvalu": "D", "Uganda": "D", "Ukraine": "D", "Emiratos Árabes Unidos": "D", "United Republic of Tanzania": "D", "Uzbekistan": "D", "Vanuatu": "D", "Wallis & Futuna": "D", "Yemen": "D", "Zambia": "D", "Zimbabwe": "D"};
+const ALL_COUNTRIES=["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahama", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Birmania", "Bolivia", "Bonaire Sint Eustatius and Saba", "Bosnia-Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canadá", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Cook Islands", "Costa Rica", "Croatia", "Curazao", "Cyprus", "Czech Republic", "Côte D'ivoire (Ivory Coast)", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Emiratos Árabes Unidos", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "Gabon", "Gambia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Islas Feroe", "Islas Salomón", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Monserrat", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Phillipines", "Poland", "Portugal", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Qatar", "Romania", "Russian Federation", "Rwanda", "Réunion", "Saint Lucia", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Territorio Palestino", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkmenistan", "Turks & Caicos Islands", "Turquía", "Tuvalu", "U.S. Virgin Islands", "Uganda", "Ukraine", "United Kingdom (Great Britain)", "United Republic of Tanzania", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"];
+const ZONES={A:["United States", "Anguilla", "Antigua & Barbuda", "Aruba", "Bahama", "Barbados", "Belize", "Bermuda", "Bolivia", "Bonaire Sint Eustatius and Saba", "Brazil", "British Virgin Islands", "Canadá", "Cayman Islands", "Chile", "Colombia", "Costa Rica", "Curazao", "Dominica", "Dominican Republic", "Ecuador", "El Salvador", "French Guiana", "Grenada", "Guadeloupe", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Martinique", "Mexico", "Monserrat", "Netherlands Antilles", "Nicaragua", "Panama", "Paraguay", "Peru", "Puerto Rico - Arguadilla - BQN", "Puerto Rico - Arecibo - ARE", "Puerto Rico - Carolina (FAJ) - FAJ", "Puerto Rico - Carolina (NRR) - NRR", "Puerto Rico - Guaynabo - SIG", "Puerto Rico - Ponce - PSE", "Puerto Rico - San Juan - SJU", "Saint Lucia", "St. Kitts and Nevis", "St. Maarten", "St. Martin", "St. Vincent & the Grenadines", "Suriname", "Trinidad & Tobago", "Turks & Caicos Islands", "U.S. Virgin Islands", "Uruguay", "Venezuela"],B:["Andorra", "Austria", "Belgium", "Bulgaria", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Gibraltar", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Monaco", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Russian Federation", "Slovakia", "Slovenia", "South Africa", "Spain", "Sweden", "Switzerland", "United Kingdom (Great Britain)", "Vatican City"],C:["Australia", "China", "Guam", "Hong Kong", "Indonesia", "Japan", "Macau", "Malaysia", "Birmania", "New Zealand", "Phillipines", "Singapore", "South Korea", "Taiwan", "Thailand", "Vietnam"],D:["Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Belarus", "Benin", "Bhutan", "Bosnia-Herzegovina", "Botswana", "Brunei", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Cook Islands", "Côte D'ivoire (Ivory Coast)", "Croatia", "Cyprus", "Democratic Republic of the Congo", "Djibouti", "East Timor", "Egypt", "Equatorial Guinea", "Eritrea", "Ethiopia", "Islas Feroe", "Fiji", "French Polynesia", "Gabon", "Gambia", "Ghana", "Greenland", "Guinea", "Guinea-Bissau", "India", "Iran", "Iraq", "Israel", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Lesotho", "Liberia", "Macedonia", "Madagascar", "Malawi", "Maldives", "Mali", "Marshall Islands", "Mauritania", "Mauritius", "Micronesia", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "New Caledonia", "Niger", "Nigeria", "Niue", "Northern Mariana Islands", "Oman", "Pakistan", "Palau", "Territorio Palestino", "Papua New Guinea", "Qatar", "Réunion", "Rwanda", "Samoa", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Islas Salomón", "Sri Lanka", "Sudan", "Swaziland", "Syrian Arab Republic", "Togo", "Tonga", "Tunisia", "Turquía", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "Emiratos Árabes Unidos", "United Republic of Tanzania", "Uzbekistan", "Vanuatu", "Wallis & Futuna", "Yemen", "Zambia", "Zimbabwe"]};
+
+/* * Corrección de formato para precios internacionales (Reemplazo $ por USD explícito).
+ */
 const ZC={
-  A:{cur:'USD',sym:'$',nes:'Zona A — América',nen:'Zone A — Americas',key:'zone_a'},
-  B:{cur:'EUR',sym:'€',nes:'Zona B — Europa',nen:'Zone B — Europe',key:'zone_b_eur'},
-  C:{cur:'USD',sym:'$',nes:'Zona C — Asia Pacífico',nen:'Zone C — Asia Pacific',key:'zone_c'},
-  D:{cur:'USD',sym:'$',nes:'Zona D — Resto del Mundo',nen:'Zone D — Rest of World',key:'zone_d'},
+  A:{cur:'USD',sym:'USD ',nes:'Zona A — América',nen:'Zone A — Americas',key:'zone_a'},
+  B:{cur:'EUR',sym:'€ ',nes:'Zona B — Europa',nen:'Zone B — Europe',key:'zone_b_eur'},
+  C:{cur:'USD',sym:'USD ',nes:'Zona C — Asia Pacífico',nen:'Zone C — Asia Pacific',key:'zone_c'},
+  D:{cur:'USD',sym:'USD ',nes:'Zona D — Resto del Mundo',nen:'Zone D — Rest of World',key:'zone_d'},
 };
+
 const FLAGS={France:'🇫🇷',Germany:'🇩🇪',Spain:'🇪🇸',Italy:'🇮🇹','United Kingdom (Great Britain)':'🇬🇧',
   Brazil:'🇧🇷','México':'🇲🇽',Colombia:'🇨🇴',Chile:'🇨🇱',Peru:'🇵🇪',Ecuador:'🇪🇨',
   Netherlands:'🇳🇱',Belgium:'🇧🇪',Portugal:'🇵🇹',Austria:'🇦🇹',Switzerland:'🇨🇭',
@@ -410,6 +444,7 @@ const T={
     flegal:'Los precios incluyen costo de envío FedEx. <strong>No incluyen impuestos, aranceles ni tasas de importación del país destino</strong>, que son responsabilidad del comprador. Todos los instrumentos se fabrican a pedido. Precios sujetos a actualización.',
     nv:{home:'Inicio',catalog:'Catálogo',about:'Quiénes Somos',track:'Trayectoria',friends:'Amigos',contact:'Contacto'},
     sc:'Seleccioná tu país...',ss:'Buscar país...',
+    wa_btn:'Consultar / Comprar',
   },
   en:{
     tag:'INTERNATIONAL CATALOG',sub:'Handcrafted flat drums — compact, lightweight, with their own sonic identity.',
@@ -428,7 +463,7 @@ const T={
     abp1:"It was born from a search for a new way to understand the drum kit: lighter, more compact, and adaptable to today\'s musicians, without losing sonic identity or quality. The idea arose from a concrete need: to make the instrument easier to transport, set up, and use—especially in urban settings, small stages, or for musicians who travel.",
     abp2:'At Brums, we design and build each instrument by hand, combining handcrafted wood with 3D-printed components. We believe in a product that not only works well, but also inspires.',
     abp3:'For several years we have developed and perfected this concept, selling our instruments directly to musicians in Argentina and countries around the world. A project driven by passion for music, innovation, and making things with genuine identity.',
-    trh:'HISTORY <span style="color:var(--ac)">&amp; ACHIEVEMENTS</span>',
+    trh:'HISTORY <span style="color:var(--ac)">& ACHIEVEMENTS</span>',
     trlead:'Since 2017 we have independently developed our own concept that has grown beyond the workshop.',
     trintl:'Today our instruments are present in different countries around the world. Each sale validates that the Brums concept works beyond borders.',
     frlead:'A selection of artists and projects connected to Brums Art Drums. Some play with Brums kits, others use components or are part of the community.',
@@ -439,6 +474,7 @@ const T={
     flegal:'Prices include FedEx shipping cost. <strong>They do not include import duties, customs fees, or taxes at destination</strong>, which are the buyer\'s responsibility. All instruments are made to order. Prices subject to change.',
     nv:{home:'Home',catalog:'Catalog',about:'About Us',track:'History',friends:'Friends',contact:'Contact'},
     sc:'Select your country...',ss:'Search country...',
+    wa_btn:'Inquire / Buy',
   }
 };
 
@@ -446,11 +482,30 @@ const T={
 let lang='en', zone=null, country=null, curSec='home';
 
 // ──────────── INIT ────────────
-(function init(){
+(async function init(){
   lang=(navigator.language||'').toLowerCase().startsWith('es')?'es':'en';
   buildCountryList();
+  
+  // IP Autodetect
+  try {
+    const res = await fetch('https://get.geojs.io/v1/ip/geo.json');
+    const data = await res.json();
+    let cName = data.country;
+    let matched = ALL_COUNTRIES.find(c => c.toLowerCase() === cName.toLowerCase());
+    
+    // Fallbacks para denominaciones comunes
+    if(!matched && (cName === "United States" || cName === "USA")) matched = "United States";
+    if(!matched && cName === "United Kingdom") matched = "United Kingdom (Great Britain)";
+
+    if(matched) setCountry(matched);
+  } catch(e) {
+    console.log('Autodetect skipped');
+  }
+
   document.getElementById('bes').classList.toggle('on',lang==='es');
   document.getElementById('ben').classList.toggle('on',lang==='en');
+  
+  renderCarousel();
   renderAll();
 })();
 
@@ -494,6 +549,19 @@ function goSec(s){
   if(s==='catalog')renderCatalog();
 }
 
+// ──────────── CAROUSEL ────────────
+function renderCarousel() {
+  const track = document.getElementById('ctrack');
+  if(!track) return;
+  let allImages = [];
+  STRUCTURE.forEach(sec => sec.subs.forEach(sub => sub.products.forEach(p => {
+    if(p.img && p.img !== 'x') allImages.push(p.img);
+  })));
+  allImages = [...new Set(allImages)]; // Sin duplicados
+  const imgHTML = allImages.map(img => `<img src="${img}" alt="Brums Drum" loading="lazy">`).join('');
+  track.innerHTML = imgHTML + imgHTML; // Duplicado para efecto scroll infinito
+}
+
 // ──────────── RENDER ALL ────────────
 function renderAll(){
   const t=T[lang],z=zone;
@@ -501,27 +569,36 @@ function renderAll(){
   const hz=document.getElementById('hzone');
   hz.innerHTML=z?`<strong>${t.zone(z)}</strong>`:`<span>${t.nozone}</span>`;
   set('hnote',t.note);set('nbar',t.nb);
+  
   // Feature tiles
   document.getElementById('ftiles').innerHTML=['f1','f2','f3','f4'].map(k=>`<div class="ftile"><div class="ftile-icon">${{f1:'🎯',f2:'✈️',f3:'🔨',f4:'💬'}[k]}</div><div class="ftile-h">${t[k+'h']}</div><div class="ftile-b">${t[k+'b']}</div></div>`).join('');
   set('cta',t.cta);
+  
   // Nav
   Object.keys(t.nv).forEach(k=>{const el=document.getElementById('nv-'+k);if(el)el.textContent=t.nv[k];});
+  
   // Footer
   set('fl-home',t.nv.home);set('fl-cat',t.nv.catalog);set('fl-ab',t.nv.about);set('fl-tr',t.nv.track);set('fl-fr',t.nv.friends);set('fl-ct',t.nv.contact);
   set('flegal',t.flegal);
+  
   // About
   set('ab-h',t.abh);set('ab-lead',t.ablead);set('ab-p1',t.abp1);set('ab-p2',t.abp2);set('ab-p3',t.abp3);
+  
   // Trayectoria
   set('tr-h',t.trh);set('tr-lead',t.trlead);set('tr-intl',t.trintl);
   document.getElementById('tl-body').innerHTML=TL[lang].map(i=>`<div class="tl-item"><div class="tl-yr">${i.y}</div><div><div class="tl-h">${i.h}</div><div class="tl-p">${i.p}</div></div></div>`).join('');
+  
   // Friends
   set('fr-lead',t.frlead);set('fr-spot',t.frspot);
   document.getElementById('fg').innerHTML=FRIENDS.map(f=>`<div class="fc"><div class="fc-n">${f.name}</div><div class="fc-d">${f.d[lang]}</div></div>`).join('');
+  
   // Contact
   set('ct-h',t.cth);set('ct-lead',t.ctlead);set('ct-loc',t.ctloc);set('ct-note',t.ctnote);
+  
   // Coverage
   set('covh',t.covh);set('covp',t.covp);
   renderZones();
+  
   if(curSec==='catalog')renderCatalog();
 }
 function set(id,html){const el=document.getElementById(id);if(el)el.innerHTML=html;}
@@ -562,9 +639,15 @@ function renderCatalog(){
         const desc=lang==='es'?p.desc_es:p.desc_en;
         const priceH=price?`<span class="pcur">${zc.sym}</span><span class="pval">${price.toLocaleString()}</span>`:`<span class="pnp">${t.noprice}</span>`;
         const skuLine=p.sku?`<div class="psku">${p.sku}</div>`:``;
+        
+        // Link directo WhatsApp con pre-llenado de mensaje
+        const waMsg = lang==='es' ? `Hola! Me interesa: ${desc}${p.sku? ' ('+p.sku+')' : ''}` : `Hello! I'm interested in: ${desc}${p.sku? ' ('+p.sku+')' : ''}`;
+        const waLink = `https://wa.me/5492342408256?text=${encodeURIComponent(waMsg)}`;
+        const waBtn = `<a href="${waLink}" target="_blank" class="pbtn-wa"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg> ${t.wa_btn}</a>`;
+
         return `<div class="pcard">${cardImg(p)}
         <div class="pbody">${skuLine}<div class="pmto">${t.mto}</div><div class="pname">${desc}</div>
-        <div class="pprice"><span class="plabel">${t.plabel}</span><span>${priceH}</span></div></div></div>`;
+        <div class="pprice"><span class="plabel">${t.plabel}</span><span>${priceH}</span></div>${waBtn}</div></div>`;
       }).join('');
       paHTML+=`<div class="cat-sub" id="sub-${sub.id}"><div class="sub-hdr"><h3>${sub[lang]}</h3><span class="sub-cnt">${sub.products.length}</span></div><div class="pgrid">${cards}</div></div>`;
     });
