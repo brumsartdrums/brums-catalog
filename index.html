@@ -558,7 +558,10 @@ function renderCarousel() {
     if(p.img && p.img !== 'x') allImages.push(p.img);
   })));
   allImages = [...new Set(allImages)]; // Sin duplicados
-  const imgHTML = allImages.map(img => `<img src="${img}" alt="Brums Drum" loading="lazy">`).join('');
+  
+  // Agregamos el onerror para ocultar las imágenes que no existan en la carpeta
+  const imgHTML = allImages.map(img => `<img src="${img}" alt="Brums Drum" loading="lazy" onerror="this.style.display='none'">`).join('');
+  
   track.innerHTML = imgHTML + imgHTML; // Duplicado para efecto scroll infinito
 }
 
